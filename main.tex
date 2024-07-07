@@ -1,14 +1,159 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[margin=0.5in]{geometry}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=1pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    numbers=none
+}
+
+\lstset{style=mystyle}
 
 \title{Programming Notebook}
-\author{Gage Kilmer}
-\date{July 2024}
+\author{Gage H. Kilmer}
+\date{Last Updated: July 2024}
 
 \begin{document}
 
 \maketitle
 
-\section{Introduction}
+\newpage
+\section{General Programming}
+\subsection{Review Questions}
+
+\newpage
+\section{C\# Programming}
+
+\subsection{Review Questions}
+\begin{itemize}
+    \item What is the .NET SDK?
+    \begin{itemize}
+        \item The .NET Standard Developer Kit contains the .NET Command Line Interface (CLI), the .NET runtime, as well as a myriad of tools and libraries to enable a developer to build and deploy applications. 
+    \end{itemize}
+    \item What is the .NET Runtime?
+    \begin{itemize}
+        \item The .NET Runtime contains all the necessary infrastructure for a device to run a .NET application.
+    \end{itemize}
+        \item What is a \textit{self-contained deployment}?
+    \begin{itemize}
+        \item A self-contained deployment is when an application comes prepackaged with the necessary runtime for it to run.
+    \end{itemize}
+    \item Is C\# a \textit{managed code} or \textit{unmanaged code} language, and what does that mean?
+    \begin{itemize}
+        \item C\# is typically used to create managed code, though using the \textit{unsafe} keyword allows you to directly manipulate memory, which makes unmanaged code. Additionally, you can implement interoperability with unmanaged code .dll files.
+        \item Managed code is compiled into an intermediate language, to be interpreted by a language runtime, such as the Common Language Runtime (CLR). It typically has automatic memory management (garbage collection) and offers greater cross-platform support, as many of the details of hardware implementation are handled by the runtime.
+        \item Unmanaged code is compiled to machine language, and allows greater control over low-level operations, including manual memory management. However it also requires the developer to properly handle the additional responsibilities.
+    \end{itemize}
+    \item What are ``Top-level statements" in C\#?
+    \begin{itemize}
+        \item Starting with C\#9, simple applications can be written that do not require explicit definitions of a namespace, a main function, or even a class.
+    \end{itemize}
+    \item What is the \textit{var} keyword and how is it used?
+    \begin{itemize}
+        \item The var keyword is used to declare a variable using type inference, in essence the compiler interprets the data type that is being stored and treats the variable as such. 
+        \item It is necessary to use for anonymous functions, however it is otherwise a stylistic choice that should generally be avoided as it reduces code readability.
+    \end{itemize}
+    \item What is the \textit{const} keyword?
+    \begin{itemize}
+        \item The const keyword marks that a variable should never be changed, ideally even in future versions of the program (Otherwise it will need to be recompiled for the change to be reflected).
+        \item Variables with the const keyword \textbf{must} be initialized to a value when they are declared, and that value must be known at compile-time (cannot come from another variable).
+        \item Additionally, const variables are always static, and cannot be used with the static keyword.
+    \end{itemize}
+    \item What are ``nullable value types?"
+    \begin{itemize}
+        \item Nullable value types were introduced in C\#2, and by using the ? operator, it allows you to set value type variables to null
+        \item Behind the scenes
+        \begin{lstlisting}[language=C++]
+            int? myInt; \end{lstlisting} is interpreted by the compiler as
+            \begin{lstlisting}[language=C++]
+            Nullable<int> myInt; \end{lstlisting}
+        \item Nullable types have a property called \textit{hasValue} which returns true if it is not null, and false if it is 
+    \end{itemize}
+    \item What are ``nullable reference types?"
+    \begin{itemize}
+        \item Nullable reference types throw compiler warnings when they are not checked for null value, to reduce the risk of \textit{NullReferenceException} errors
+        \item Additionally, with this enabled, non-nullable reference types can no longer be set to null without throwing compiler warnings.
+        \item C\# 8 introduced nullable reference types, and they must be explicitly enabled.
+    \end{itemize}
+    \item What is the \textit{?.} operator?
+    \begin{itemize}
+        \item The ?. operator is called the null-conditional operator, and it checks if the calling object is null before invoking the method. 
+        \item Example: \begin{lstlisting}[language=C++]
+            myObject?.method(); \end{lstlisting}
+        \item The result of a method called this way cannot be assigned to a non-nullable type, as they will return null if the calling object is null.
+        \item Valid Example:
+            \begin{lstlisting}[language=C++]
+            string? objectName = myObject?.getName(); \end{lstlisting} 
+    \end{itemize}
+    \item What is the \textit{??} operator?
+    \begin{itemize}
+        \item The coalescing operator is used to return a different value if the left-hand expression evaluates to null.
+        \item Example which returns 0 if an int is null:
+        \begin{lstlisting}[language=C++]
+            int? firstInt = null;
+            int? secondInt = firstInt ?? 0\end{lstlisting} 
+    \end{itemize}
+    \item What is the difference between reference and value types?
+    \begin{itemize}
+        \item 
+    \end{itemize}
+    \item What are the different integer types in C\#?
+    \begin{itemize}
+        \item The byte and sbyte types have 8 bits, and can represent [0,255] and [-128,127] respectively
+        \item The short and ushort types have 16 bits, and can represent [-32768, 32767] and [0, 65535] respectively
+        \item The int type is a signed 32-bit integer, and uint is an unsigned 32-bit integer
+        \item Likewise, long and ulong are 64-bit integers.
+        \item Lastly, there is the BigInteger data type, which has no upper and lower bounds, but will dynamically resize itself as long as there is enough memory to do so.
+    \end{itemize}
+    \item What is the purpose of underscores when working with numerical values?
+    \begin{itemize}
+        \item They can be used as separators that are ignored by the compiler to improve code readability.
+        \item This is especially helpful when working with binary data via the 0b literal.
+    \end{itemize}
+    \item What are the different floating point types in C\#?
+    \begin{itemize}
+        \item System.Half is a 16-bit floating point type.
+        \item System.Single (float) is a 32-bit floating point type, used by adding an ``f" to the value.
+        \item System.Double (double) is a 64-bit floating point type.
+        \item System.Decimal (decimal) is a 128-bit floating point type, used my adding an ``m" to the value.
+    \end{itemize}
+    \item What integer values map to which boolean values in C\#?
+    \begin{itemize}
+        \item You cannot convert between integers and booleans in C\#.
+    \end{itemize}
+\end{itemize}
+
+
+\newpage
+\section{C++ Programming}
+\subsection{Review Questions}
+
+\newpage
+\section{Unity Game Development}
+\subsection{Review Questions}
+
+\newpage
+\section{Unreal Engine Game Development}
+\subsection{Review Questions}
 
 \end{document}
