@@ -40,6 +40,11 @@
 \newpage
 \section{General Programming}
 \subsection{Review Questions}
+\subsection{Algorithms}
+\subsubsection{The A* Algorithm}
+\begin{itemize}
+    \item 
+\end{itemize}
 
 \newpage
 \section{C\# Programming}
@@ -214,6 +219,48 @@
         \begin{lstlisting}[language=C++]
                 Console.Writeln(@"C:\Users\User"); \end{lstlisting} 
     \end{itemize}
+    \item What are the different access modifiers in C\#?
+    \begin{itemize}
+        \item Public: Accessible from anywhere in the code.
+        \item Private: Accessible only from the containing class.
+        \item Protected: Accessible from the containing class and any derived classes.
+        \item Internal: Accessible from the containing class and anywhere in the same assembly 
+        \item Protected Internal: Accessible from the containing class, anywhere in the same assembly, and derived classes anywhere.
+        \item Private Protected: Accessible only from the containing class and derived classes \textbf{in the same assembly}.
+    \end{itemize}
+    \item What are the differences between the \textit{const} and \textit{readonly} keywords?
+    \begin{itemize}
+        \item Const fields are known at compile-time, and they cannot be changed at all once set. They must be initialized to a value when declared, and are always intrinsically static.
+        \item Readonly fields are able to be set at runtime, and they can be changed without limitation within the constructor of the containing object. They can be static or instance variables.
+    \end{itemize}
+    \item What are the differences between the equivalence semantics for value and reference types?
+    \begin{itemize}
+        \item When checking if two value types are equal, the default behaviour is to return true if every data member of the $a$ and $b$ are equal.
+        \item When checking if two reference types are equal, the default behaviour is to return true only if both $a$ and $b$ point to the same location in memory.
+        \item These behaviours can be changed by overriding the Equals and GetHashCode functionality.
+    \end{itemize}
+    \item What are ``Properties" in C\#?
+    \begin{itemize}
+        \item Properties are private fields made accessible through getter and setter accessor functions.
+        \item Accessor functions can be auto-implemented, and may also allow for default values to be set.
+        \begin{lstlisting}[language=C++]
+                public int MyInt {get; set;} = 112; \end{lstlisting} 
+        \item Auto-implemented accessors can have their accessibility explicitly set.
+        \begin{lstlisting}[language=C++]
+                public int MyInt {public get; private set;} = 112; \end{lstlisting}
+        \item Properties can be made readonly by simply not implementing a set accessor.
+        \begin{lstlisting}[language=C++]
+                public int MyInt {get; } = 112; \end{lstlisting}
+        \item Properties can be accessed as if they were public fields without breaking encapsulation.
+    \end{itemize}
+    \item What are ``expression-bodied properties"?
+    \begin{itemize}
+        \item Expression-bodied properties are read-only properties implemented with the $=>$ syntax.
+        \item The compiler automatically generates a public get accessor for the property
+         \begin{lstlisting}[language=C++]
+                private readonly string ReturnThisValue;
+                public string CallThisAccessor => ReturnThisValue;\end{lstlisting}
+    \end{itemize}
 \end{itemize}
 
 
@@ -243,7 +290,12 @@
     \item Vector3.Dot - Static, calculates the dot product of two vectors.
     \begin{lstlisting}[language=C++]
                 float dotProduct = Vector3.Dot(vecA, vecB); \end{lstlisting}
-    
+    \item Quarternion.LookRotation - Creates a rotation to look at a given direction based on a given forward and upwards vector. The upwards vector defaults to Vector3.up and forward should be the direction to look.
+    \begin{lstlisting}[language=C++]
+                Quaternion myRotation = Quaternion.LookRotation(lookAtDirection, Vector3.up); \end{lstlisting}
+    \item Quaternion.Slerp - Spherical Linear Interpolation between two quaternions, $startingRot$ and $endingRot$, based on a ratio between $[0,1]$, usually denoted by time.
+    \begin{lstlisting}[language=C++]
+                transform.rotation = Quaternion.Slerp(startingRot, endingRot, ratio); \end{lstlisting}
 \end{itemize}
 \subsection{Review Questions}
 
