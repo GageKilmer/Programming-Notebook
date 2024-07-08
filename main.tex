@@ -223,10 +223,54 @@
 
 \newpage
 \section{Unity Game Development}
+\subsection{Useful Functions to Remember}
+\begin{itemize}
+    \item Transform.LookAt - Sets the forward vector of the calling transform to be facing towards the target transform
+    \begin{lstlisting}[language=C++]
+                myTransform.LookAt(Transform target); \end{lstlisting} 
+    \item Vector3.Magnitude - Gets the magnitude (length) of a vector
+    \begin{lstlisting}[language=C++]
+                float distance = vectorToTarget.magnitude; \end{lstlisting}
+    \item Vector3.SqrMagnitude - Gets the magnitude (length) of a vector squared. Useful because it is much faster than Vector3.magnitude, as it doesn't require a square root operation.
+    \begin{lstlisting}[language=C++]
+                float distance = vectorToTarget.sqrMagnitude; \end{lstlisting}
+    \item Vector3.Distance - Static, gets the distance between two transforms
+    \begin{lstlisting}[language=C++]
+                float distance = Vector3.Distance(myPos, targetPos); \end{lstlisting}
+    \item Debug.DrawRay - Static, draws a ray from a starting position along a given vector.
+    \begin{lstlisting}[language=C++]
+                Debug.DrawRay(myPos, vectorToTrack, myColor, durationInSeconds); \end{lstlisting}
+    \item Vector3.Dot - Static, calculates the dot product of two vectors.
+    \begin{lstlisting}[language=C++]
+                float dotProduct = Vector3.Dot(vecA, vecB); \end{lstlisting}
+    
+\end{itemize}
 \subsection{Review Questions}
 
 \newpage
 \section{Unreal Engine Game Development}
+
 \subsection{Review Questions}
 
+\newpage
+\section{General Mathematics \& Physics}
+\subsection{Mathematics}
+\begin{itemize}
+    \item What is a Dot Product?
+    \begin{itemize}
+        \item The dot product is the sum of the multiplication of two vectors by their components
+        \item To get the dot product of vectors a and b we use the formula $a.x*b.x + a.y*b.y$
+        \item A right angle has a dot product of $0$, acute angles have positive dot products, and obtuse angles have negative dot products.
+        \item This can be used to identify the relative positioning of an object in space
+        \item Additionally the angle $\theta$ can be calculated via the formula $\theta = cos^{-1}(\frac{a \cdot b}{||a||*||b||})$ 
+        \item Normalized vectors return $1$ if they face the same direction and $-1$ if they face opposite directions.
+    \end{itemize}
+    \item What is a Cross Product?
+    \begin{itemize}
+        \item Cross product returns a vector which is orthogonal to both of its input vectors.
+        \item The cross product of vectors $a$ and $b$ can be calculated by the formula:
+        $\newline (a.y*b.z - a.z*b.y), (a.z*b.x - a.x*b.z), (a.x*b.y - a.y*b.x)$ 
+        \item The sign of the resultant vectors components can show whether a clockwise or counterclockwise turn on a given axis will get the first vector to line up with the second. Positive for clockwise, and negative for counterclockwise.
+    \end{itemize}
+\end{itemize}
 \end{document}
