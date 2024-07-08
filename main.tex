@@ -115,7 +115,13 @@
     \end{itemize}
     \item What is the difference between reference and value types?
     \begin{itemize}
-        \item 
+        \item Value types contain the value of the variable, and when they are passed as parameters to functions, a new copy of the value type variable is made.
+        \item Reference types instead hold a pointer to the original data, and as such when they are passed as parameters, changes made within the function are reflected in the original.
+    \end{itemize}
+    \item What are the different value and reference types?
+    \begin{itemize}
+        \item Reference types: Class, String, Dynamic, Object, Interface, Record, Delegate
+        \item Value types: Anything else, notably including structs
     \end{itemize}
     \item What are the different integer types in C\#?
     \begin{itemize}
@@ -140,6 +146,73 @@
     \item What integer values map to which boolean values in C\#?
     \begin{itemize}
         \item You cannot convert between integers and booleans in C\#.
+    \end{itemize}
+    \item What is ``pattern matching?"
+    \begin{itemize}
+        \item Pattern matching allows simpler syntax to check whether data matches some given pattern. There are many types of pattern matching that each have different uses. They are most commonly used with conditional statements, switch statements, and switch expressions.
+    \end{itemize}
+    \item What are the different types of pattern matching?
+    \begin{itemize}
+        \item Type Pattern: Checks if the data is castable to a given type. Putting an identifier after the data type does the cast and stores the result to that new variable.
+         \begin{lstlisting}[language=C++]
+            if(myValue is int)
+            if(myValue is int newValue)\end{lstlisting}
+        \item Const Pattern: Checks if the data is equal to a given value, including null.
+         \begin{lstlisting}[language=C++]
+            if(myValue is 32)
+            if(myValue is null)\end{lstlisting} 
+        \item Relational Pattern: Checks if the data has some given relationship to a given value.
+        \begin{lstlisting}[language=C++]
+            if(myValue is >= 32)
+            switch(myValue)
+                case == 3:\end{lstlisting} 
+        \item Property Pattern: Checks the value of a named property on the given object.
+            \begin{lstlisting}[language=C++]
+                if(myString is {Length: 4}) \end{lstlisting} 
+        \item Positional Pattern: Checks if a group of values in parentheses match the values in a tuple, positional record, or a type which has a defined \textit{Deconstruct()} method. Any value checked against an underscore is treated as a wildcard.
+        
+                \begin{lstlisting}[language=C++]
+                if(myPair is (false, false))
+                if(myCoords is (0.5f, _, 0.5f))\end{lstlisting}
+        \item Var Pattern: The var pattern always succeeds, as it doesn't check for anything, but instead stores an expression into a var.
+        \begin{lstlisting}[language=C++]
+                if(getData() is var myData && myData.value is 32) \end{lstlisting} 
+    \end{itemize}
+
+    \item What are Pattern Combinators/Logical Patterns?
+    \begin{itemize}
+        \item The three pattern combinators are \textit{not, and,} and \textit{or}.
+        \item They act as ways to combine multiple patterns together for more complex checking
+        \begin{lstlisting}[language=C++]
+                if(myValue is < 0 or >100 and not 32) \end{lstlisting} 
+    \end{itemize}
+    \item What are the differences between Casting, Converting, and Parsing data?
+    \begin{itemize}
+        \item Casting tells the compiler that one piece of data should be interpreted as a different data type. No data is changed, but data can be lost when casting from a higher precision type to a lower precision type. For example, a float to an int.
+        \item Conversion is typically an actual software function call which takes in one data type and returns another. Data may be changed during this call.
+        \item Parsing is a special subset of conversion where a string is converted to a different data type if it can properly be represented as such.
+    \end{itemize}
+    \item What is the difference between the String class and the StringBuilder class?
+    \begin{itemize}
+        \item Technically strings are an immutable type in C\#, they cannot be modified. If you do someString += "a", you are actually creating an entirely new string object which is inefficient
+        \item StringBuilders are a mutable type that allow you to modify strings without creating new objects
+    \end{itemize}
+    \item What is String Interpolation?
+    \begin{itemize}
+        \item String interpolation allows you to insert expressions and variables into strings by beginning the string with a \$ and putting any expressions within brackets.
+        \begin{lstlisting}[language=C++]
+                Console.Writeln($"My name is {Name.first} {Name.last}, and my initials are {Name.first[0] + Name.last[0]}"); \end{lstlisting} 
+    \end{itemize}
+    \item What is the FormattableString type?
+    \begin{itemize}
+        \item Formattable strings are strings which contain Format, GetArgument, and ArgumentCount members, which allow you to directly check and write information relating to an interpolated strings formatting.
+    \end{itemize}
+    \item What are Verbatim Strings?
+    \begin{itemize}
+        \item Verbatim strings ignore any escape characters and are stored exactly as they are written.
+        \item They are declared by prefixing a string with the @ symbol.
+        \begin{lstlisting}[language=C++]
+                Console.Writeln(@"C:\Users\User"); \end{lstlisting} 
     \end{itemize}
 \end{itemize}
 
