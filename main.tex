@@ -281,6 +281,103 @@
                 private readonly string ReturnThisValue;
                 public string CallThisAccessor => ReturnThisValue;\end{lstlisting}
     \end{itemize}
+    \item What are ``init-only set accessors"?
+    \begin{itemize}
+        \item Init-only set accesssors are used to create set accessors which can only be used from a constructor or an object initializer.
+        \begin{lstlisting}[language=C++]
+                public class MyClass
+                {
+                    public string initOnly {get; init;} = "Default";
+                }
+                //Valid
+                myClass = new MyClass(){initOnly = "New Value";}
+
+                //Not valid
+                myClass = new MyClass();
+                myClass.initOnly = "New Value";
+                \end{lstlisting}
+    \end{itemize}
+    \item What is the difference between a function and a method in C\# nomenclature?
+    \begin{itemize}
+        \item Methods specifically refer to callable code chunks which may accept parameters and may return values.
+        \item Function members are a more general term that includes methods, but may also refer to any non-data member of a class.
+    \end{itemize}
+    \item What is an ``Expression-Bodied Method?"
+    \begin{itemize}
+        \item An expression-bodied method is a method which only contains a single statement and is written using the $=>$ syntax;
+        \begin{lstlisting}[language=C++]
+                private void myFunction() => doSomething;\end{lstlisting}
+    \end{itemize}
+    \item What is method overloading?
+    \begin{itemize}
+        \item Method overloading is a form of compile-time polymorphism that allows you to define the same method using multiple different input parameters to call different implementations.
+        \item Additionally, an overloaded method can invoke a different overload of the same method within its implementation.
+    \end{itemize}
+    \item What are named arguments and how/why are they implemented?
+    \begin{itemize}
+        \item Named arguments allow you to specify the name of the parameter that an argument correlates to.
+        \item They are implemented by prefacing an argument with the name of the parameter, followed by a colon
+                \begin{lstlisting}[language=C++]
+                myFunction(x: x_value, y: y_value);\end{lstlisting}
+        \item They generally improve code readability without adding any overhead as the compiler rearranges the arguments automatically, and they are especially powerful used in conjunction with optional parameters
+    \end{itemize}
+    \item What is the different between an argument and a parameter?
+    \begin{itemize}
+        \item A parameter is a variable used as part of a method signature.
+        \item An argument is the value that correlates to a parameter when a method is invoked.
+    \end{itemize}
+    \item What are optional parameters and how/why are they used?
+    \begin{itemize}
+        \item Optional parameters are used by defining a default value for a parameter in the method definition.
+        \item They allow for an easier to read form of method overloading when the only change made is the number of parameters, not the type of parameters.
+        \item They can be used in tandem with named arguments to provide access to a wider set of method overloads.
+        \begin{lstlisting}[language=C++]
+                private void myFunction(int notOptional, int optional1 = 12, int optional2 = 21);
+                myFunction(notOptional: 17, optional2: 65);\end{lstlisting}
+    \end{itemize}
+    \item What is the \textit{params} keyword and when should it be used?
+    \begin{itemize}
+        \item The params keyword specifies that an array parameter can take any number of arguments of the appropriate type without first packaging them into an array.
+        \item This can lead to more optimized code (as an array object does not need to be created or destroyed), and more concise code (as an array object does not need to be declared and filled).
+        \item However, it is also more dangerous to use if there are other parameters of the same type and the order of them may change in the future. This risk can be mitigated with the use of named arguments.
+        \begin{lstlisting}[language=C++]
+                //Valid
+                private void myFunc(params int[] numsToAdd);
+                myFunc(1,2,3,...,x);
+                
+                //Risky because if otherParam is ever moved or removed the old function calls                will still work in unintended ways
+                private void myFunc(int otherParam, params int[] numsToAdd);
+                myFunc(1,1,2,...,x)
+
+                //Less risky, as the old function calls will now throw errors
+                private void myFunc(int otherParam, params int[] numsToAdd);
+                myFunc(otherParam: 1, 1,2,...,x)
+                \end{lstlisting}
+    \end{itemize}
+    \item What are the differences between object initializers and constructors?
+    \begin{itemize}
+        \item Constructors and object initializers are both used to instantiate objects, however object initializers were introduced prior to optional parameters, and exist as a method to reduce the number of constructor overloads.
+        \begin{lstlisting}[language=C++]
+                //param1 is required and param2 is optional
+                
+                //Using Method Overloading
+                //Also uses tuple syntax to create a multi-parameter expression-bodied                       constructor.
+                myConstructor(int param1) => field1 = param1;
+                myConstructor(int param1, int param2) => (field1, field2) = (param1, param2);
+                myObject = new MyObject(1);
+                myObject =new MyObject(1,15);
+
+                //Using object initializers alongside named arguments
+                myConstructor(int param1) => field1 = param1;
+                myObject = new myObject(1)
+                myObject = new MyObject(param1: 1) {field2 = 15}
+
+                //Using optional parameters, named arguments, and tuple syntax
+                myConstructor(int param1, int param2=0) => (field1, field2) = (param1, param2);
+                myObject = new MyObject(param1: 1);
+                myObject = new MyObject(param1: 1, param2: 15);
+                \end{lstlisting}
+    \end{itemize}
 \end{itemize}
 
 
