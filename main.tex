@@ -43,7 +43,27 @@
 \subsection{Algorithms}
 \subsubsection{The A* Algorithm}
 \begin{itemize}
-    \item 
+    \item The A* Algorithm is a node-based pathfinding algorithm which uses a cost value based on distance traveled and distance to goal to determine the best path
+    \item The node structure should contain fields for $distanceFromOrigin$, $distanceToEndpoint$, $totalScore$
+    and $parentNode$
+    \begin{itemize}
+        \item $distanceFromOrigin$ is cumulative based on the distance from the previous node
+        \item $distanceToEndpoint$ can be any form of distance calculation, like taxicab or direct
+        \item $totalCost$ is the sum of $distanceFromOrigin$ and $distanceToEndpint$
+    \end{itemize}
+    \item The basic process for the A* algorithm is as follows:
+    \begin{itemize}
+        \item Create two empty lists of nodes, $nodesToCheck$ and $checkedNodes$.
+        \item Add the starting node to the list of nodes to check
+        \item Check to see if any of the neighboring nodes to the current node are valid, and if so, calculate their $totalCost$ add them to the $nodesToCheck$ list.
+        \item Sort the $nodesToCheck$ list by the $totalCost$ of its elements
+        \item Move the current node to $checkedNodes$
+        \item Grab the first element of $nodesToCheck$, check if it is the destination, and if not, repeat from step 3.
+        \item Once the grabbed node is the destination, work backwards through the parents of each node to get the best path.
+    \end{itemize}
+    \item The $totalCost$ field of a node can incorporate additional information to guide the algorithm towards a more ``ideal" path
+    \item There may be an additional value added to $totalCost$ for ``lava tiles" that deal damage to the character walking over them.
+    \item This, in turn, disincentivizes the path without outright removing it from consideration.
 \end{itemize}
 
 \newpage
