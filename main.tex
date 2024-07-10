@@ -66,6 +66,34 @@
     \item This, in turn, disincentivizes the path without outright removing it from consideration.
 \end{itemize}
 
+\subsection{Design Patterns}
+\subsubsection{Singleton}
+\begin{itemize}
+    \item Singletons are a design pattern characterized by a class with a single globally accessible instance.
+    \item The singleton is implemented by having a private constructor, so that no other instances of the class can be created, and by having a public static instance of the class within its definition that can be accessed from anywhere.
+\end{itemize}
+
+\subsubsection{Command}
+\begin{itemize}
+    \item The command design pattern is a general term that refers to storing a function call as an object. This object can then be passed as an argument to a function, can be added to a queue or invoked at a specified time, and implement undo/redo functionality.
+    \item In C++ this can take the form of function pointers, In C\# this is called a delegate. Other languages use the terms first-order function, callback, or closure.
+    \item There are four key aspects to the Command structure
+    \begin{itemize}
+        \item Command Interface: the abstract base class that acts as a framework for minimum functionality any derived command classes need to implement.
+        \item Concrete Command Classes: The derived classes of the command interface, which call actually implemented functions from the receiver. The concrete command classes should contain almost no actual implementations, but must contain fields for any necessary parameters of the callback function they invoke.
+        \item Receiver: The device that implements the desired functionality. The receiver class can be an abstract base class allowing for greater extensibility via derived classes if desired.
+        \item Invoker/Sender: The invoker is the class that actually calls the $command.execute()$ function from a reference to a command instance, and it has no knowledge of the implementation of the underlying method call, or of the command class it is invoking.
+    \end{itemize}
+    \item An object-oriented implementation to decouple input buttons and game functionality could be as such
+    \begin{itemize}
+        \item An abstract base Command class with derived classes that implement the game functions as overrides to an invoke function. 
+        \item Each input button then invokes the function pointer within the Command class, such that which derived class instance is tied to which input can be changed, allowing for buttons to be remapped
+        \item Additionally, if we decouple the actor that is being affected by user inputs from the user inputs, the command structure becomes a powerful interface for AI systems to control any actor that uses the same functionality.
+    \end{itemize}
+    \item In the previous example, only one instance of the derived classes of Command need to be created, and they can be reused. However, in some cases you may want to keep command instances in a buffer, which allows you to implement an undo function, as is common in many tactical style games.
+    \item An important distinction here is that the first example decoupling the actor from the command was a desired feature, as it allowed other units to utilize the same structure. 
+\end{itemize}
+
 \newpage
 \section{C\# Programming}
 
