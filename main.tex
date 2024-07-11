@@ -1,12 +1,23 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
+
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref} %Must be last package
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
 
 \lstdefinestyle{mystyle}{
     commentstyle=\color{codegreen},
@@ -36,6 +47,9 @@
 \begin{document}
 
 \maketitle
+
+\newpage
+\tableofcontents
 
 \newpage
 \section{General Programming}
@@ -76,7 +90,7 @@
 \subsubsection{Command}
 \begin{itemize}
     \item The command design pattern is a general term that refers to storing a function call as an object. This object can then be passed as an argument to a function, can be added to a queue or invoked at a specified time, and implement undo/redo functionality.
-    \item In C++ this can take the form of function pointers, In C\# this is called a delegate. Other languages use the terms first-order function, callback, or closure.
+    \item In C++ this can take the form of function pointers, In C\# this is called a delegate. Other languages use the terms first-order function, callback, or closure, each with their own unique properties.
     \item There are four key aspects to the Command structure
     \begin{itemize}
         \item Command Interface: the abstract base class that acts as a framework for minimum functionality any derived command classes need to implement.
@@ -92,6 +106,20 @@
     \end{itemize}
     \item In the previous example, only one instance of the derived classes of Command need to be created, and they can be reused. However, in some cases you may want to keep command instances in a buffer, which allows you to implement an undo function, as is common in many tactical style games.
     \item An important distinction here is that the first example decoupling the actor from the command was a desired feature, as it allowed other units to utilize the same structure. 
+\end{itemize}
+\subsubsection{Flyweight}
+\begin{itemize}
+    \item The flyweight is a structural design pattern characterized by separation of the intrinsic and extrinsic state of an object.
+    \begin{itemize}
+        \item Intrinsic State: Things that never change between instances of an object. Ex. Model, list of potential textures, etc.
+        \item Extrinsic State: Things that differ between instances of an object. Ex. Position, Rotation, HP, etc.
+    \end{itemize}
+    \item In ``Game Programming Patterns" by Robert Nystrom, the flyweight pattern is described as one where there are many instances of a small class which only contains the extrinsic state of the object, and a reference to a single copy of an object which contains the intrinsic state of an object.
+    \item This contrasts with \href{https://refactoring.guru/design-patterns/flyweight}{refactoring.guru's} example, where a Factory class creates new instances of the Flyweight class (which contains intrinsic state) if no such instance exists, and returns the existing instance if it does exist. 
+    \begin{itemize}
+        \item This paradigm has each flyweight (intrinsic) class holding all of the methods relating to the class, with the extrinsic class passing in any necessary information for that method to run.
+    \end{itemize}
+    \item Personally I feel that, in languages that support static fields, the best way to implement a flyweight-style separation of intrinsic and extrinsic data is via static fields. \item I think that holding the intrinsic state in static fields and extrinsic state in non-static fields has the best balance of performance and readability. \item It is worth noting that with the static field method, each instance of the extrinsic class must contain a reference to the intrinsic data by nature of how static members work. This is not necessarily true using Nystrom's version.
 \end{itemize}
 
 \newpage
@@ -405,6 +433,43 @@
                 myObject = new MyObject(param1: 1);
                 myObject = new MyObject(param1: 1, param2: 15);
                 \end{lstlisting}
+    \end{itemize}
+    \item What is constructor chaining and when should it be used?
+    \begin{itemize}
+        \item Constructor chaining is a special syntax that allows you to automatically call a class constructor from one of its overloaded constructors.
+        \begin{lstlisting}[language=C++]
+                //The constructor for MyObject will now accept either 1 or 2 arguments, with the             single argument constructor calling the double argument constructor with 0 as                the second argument 
+                MyObject(int a) : this(a, 0){}
+                MyObject(int a, int b) {doSomething;}
+                \end{lstlisting}
+        \item Additionally, constructor chaining also allows calling of base class constructors.
+        \begin{lstlisting}[language=C++]
+                //The constructor for MyDerivedObject takes one argument, and calls the two                  argument constructor of the base class with 0 as the second argument.
+                MyDerivedObject(int a) : base(a, 0){}
+                \end{lstlisting}
+        \item For the most part, optional parameters are a safer alternative to constructor chaining. However constructor chaining exposes more information through reflection than optional parameters.
+        \item Constructor chaining can also be used in conjunction with optional constructor parameters to call a base constructor with non-default values
+        \begin{lstlisting}[language=C++]
+                //The constructor for MyBaseObject takes one or two argument and defaults the                second optional argument to 0
+                MyBaseObject(int param1, string classID = "Base Class") {doSomething;}
+
+                //The derived object constructor can now be called with one parameter, while                 passing a set value that differs from the base default to the base constructor               for the second argument
+                MyDerivedObject1(int param1):base(param1, "Derived Class 1"){}
+
+                //Now the base class can still be instantiated, the derived class constructors               second argument effectively has a different "default" value than the base class,             and the functionality of the constructor does not need to be duplicated between              the base and derived class (as would be necessary for function overriding)
+                \end{lstlisting}
+    \end{itemize}
+    \item What are static constructors and when should they be used?
+    \begin{itemize}
+        \item Static constructors are class constructors which are always called at most one time (never if the class is never used)
+        \item They are automatically called by the CLR and cannot be manually called.
+        \item Static constructors are typically called immediately before the first call to the class, but .NET does not guarantee when they are called and so it should not be relied upon.
+        \item The use-case is rather niche, but in the circumstance that you need read-only static fields whose values are not known at compile time, such as reading data from a configuration file, static constructors are a good solution.
+        \item Static constructors do have a slight performance impact over simply setting the value at declaration if the value is known at compile-time.
+    \end{itemize}
+    \item What are ``local functions?"
+    \begin{itemize}
+        \item 
     \end{itemize}
 \end{itemize}
 
