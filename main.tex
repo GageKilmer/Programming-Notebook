@@ -127,6 +127,11 @@
 
 \subsection{Review Questions}
 \begin{itemize}
+    \item What is .NET?
+    \begin{itemize}
+        \item .NET is a framework for building windows applications, which supports multiple languages such as C\# and F\#
+        \item There are two components to .NET, the Common Language Runtime (CLR) and a class library.
+    \end{itemize}
     \item What is the .NET SDK?
     \begin{itemize}
         \item The .NET Standard Developer Kit contains the .NET Command Line Interface (CLI), the .NET runtime, as well as a myriad of tools and libraries to enable a developer to build and deploy applications. 
@@ -144,6 +149,14 @@
         \item C\# is typically used to create managed code, though using the \textit{unsafe} keyword allows you to directly manipulate memory, which makes unmanaged code. Additionally, you can implement interoperability with unmanaged code .dll files.
         \item Managed code is compiled into an intermediate language, to be interpreted by a language runtime, such as the Common Language Runtime (CLR). It typically has automatic memory management (garbage collection) and offers greater cross-platform support, as many of the details of hardware implementation are handled by the runtime.
         \item Unmanaged code is compiled to machine language, and allows greater control over low-level operations, including manual memory management. However it also requires the developer to properly handle the additional responsibilities.
+    \end{itemize}
+    \item What is ``JIT?"
+    \begin{itemize}
+        \item JIT is Just In Time Compilation, which is the process by which a runtime converts IL code to machine code.
+    \end{itemize}
+    \item What is an assembly?
+    \begin{itemize}
+        \item An assembly is simply a container for related namespaces, and they're typically .exe or .dll files on disk.
     \end{itemize}
     \item What are ``Top-level statements" in C\#?
     \begin{itemize}
@@ -469,7 +482,59 @@
     \end{itemize}
     \item What are ``local functions?"
     \begin{itemize}
-        \item 
+        \item Local functions are functions declared inside of a method, where the method is the scope, and as such they can only be called from within that method.
+        \item If a local function is declared static, it cannot use any variables from the containing method or any instance variables of the containing class, but the compiler is able to perform additional optimizations
+        \item If a local function is not static, it \textbf{must} be defined after any method-local variables it intends to use.
+    \end{itemize}
+    \item What are ``Generic Methods" and how are they used?
+    \begin{itemize}
+        \item Generic methods are methods which allow multiple types of variables to be passed in.
+        \item Each ``wildcard type" must be included in triangle brackets after the method name but before the parameter list.
+        \begin{lstlisting}[language=C++]
+            //T1 and T2 represent the two generic types 
+            private bool AreTypesSame<T1, T2>(T1 object1, T2, object2)
+            {
+                return typeOf(T1) == typeOf(T2);
+            }\end{lstlisting}
+    \end{itemize}
+    \item What are extension methods?
+    \begin{itemize}
+        \item Extension methods are methods added to a class which the defining code does not have direct access to.
+        \item Extension methods \textbf{must} be static and within a static class, however they are called like instance methods
+        \item They are implemented by using the $this$ keyword before the first parameter, of the type being extended.
+        \begin{lstlisting}[language=C++]
+            //The first parameter marks this function as an extension method, and does NOT               require an argument to be used in the method call
+            static class IntExtensions
+            {
+                public static int DoubleValue(this int value) => return value*2;
+            }
+            
+            //Which can then be called as
+            int doubled = myInt.DoubleValue();\end{lstlisting}
+    \end{itemize}
+    \item What are anonymous types and when should they be used?
+    \begin{itemize}
+        \item Anonymous types are types which do not have identifiers associated with them, and they are mostly used in LINQ queries where paring down the amount of data being returned by a query is desired.
+        \item They are declared using the $new$ keyword, and they cannot be passed into functions, used as return types, or used to explicitly set field types.
+        \item They are mutable without destruction through the use of the $with$ keyword
+        \begin{lstlisting}[language=C++]
+            var apple = new {name = "Apple", cost = 1.25};
+            var saleApple = apple with {cost=0.79}; \end{lstlisting}
+    \end{itemize}
+    \item What are the differences between class, record, and struct?
+    \begin{itemize}
+        \item Classes are reference types, and use reference equivalence semantics. They can be mutable or immutable depending on the properties they contain.
+        \item Records are reference types that use value equivalence semantics, making them ideal for data-centric classes. They are immutable by default but can be made mutable, and cannot contain any non-data members. 
+        \item Structs are value types that use value equivalence semantics. Because they are value types, they are stored on the stack by default. Structs always have a default constructor, even if a non-default constructor is defined, and they do \textbf{NOT} support inheritance.
+    \end{itemize}
+    \item What is ``boxing" and when does it occur?
+    \begin{itemize}
+        \item Boxing is the process of turning a value type variable into a reference type variable.
+        \item It occurs when value types are used as the right-hand side of a set operator and the left-hand side is a reference type variable.
+    \end{itemize}
+    \item What is the \textit{checked} keyword?
+    \begin{itemize}
+        \item The checked keyword ensures that if a variable is overflowing within the code block it encapsulates, an exception will be thrown rather than allowing the overflow.
     \end{itemize}
 \end{itemize}
 
