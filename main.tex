@@ -54,6 +54,15 @@
 \newpage
 \section{General Programming}
 \subsection{Review Questions}
+\begin{itemize}
+    \item What are the four pillars of object oriented programming
+    \begin{itemize}
+        \item Abstraction: Hiding anything that makes it more difficult for the programmer using your code to understand it. Often takes the form of separating your interface from your implementation.
+        \item Inheritance: The process of having a base class, and derived classes which inherit certain traits and features from the base/parent class.
+        \item Polymorphism: The ability for a single interface to have multiple implementations. Examples include delegates/function pointers, method overloading, and derived class overrides.
+        \item Encapsulation: Closely related to abstraction, encapsulation is about protecting your code by preventing values and methods that are not intended for use by the using programmer, usually through some form of access modifier.
+    \end{itemize}
+\end{itemize}
 \subsection{Algorithms}
 \subsubsection{The A* Algorithm}
 \begin{itemize}
@@ -585,6 +594,7 @@
     \item Quaternion.Slerp - Spherical Linear Interpolation between two quaternions, $startingRot$ and $endingRot$, based on a ratio between $[0,1]$, usually denoted by time.
     \begin{lstlisting}[language=C++]
                 transform.rotation = Quaternion.Slerp(startingRot, endingRot, ratio); \end{lstlisting}
+    \item Profiler.beginSample("name")/Profiler.endSample() - Any code between these two statements shows up in the heirarchy view of the profiler using the name passed into beginSample as a label. 
 \end{itemize}
 \subsection{Review Questions}
 
