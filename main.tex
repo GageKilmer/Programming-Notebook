@@ -576,8 +576,36 @@
 
 \newpage
 \section{Unreal Engine Game Development}
-
 \subsection{Review Questions}
+
+\newpage
+\section{General Game Development}
+\subsection{3D Modeling}
+\begin{itemize}
+    \item What is the difference between a normal map, heightmap, bump map?
+    \begin{itemize}
+        \item They are all the same thing, which describe 
+    \end{itemize}
+    \item What are UVs?
+    \begin{itemize}
+        \item Basically, the skin of the model. It is where you put textures on, as well as being involved in how lighting is calculated, depending on how your lighting engine works.
+    \end{itemize}
+    \item What is a UV Shell?
+    \begin{itemize}
+        \item A section of the UVs that is cut off from the rest of the UV's, so that it can be stretched and resized without affecting other parts of the model?
+    \end{itemize}
+    \item What is texture space?
+    \begin{itemize}
+        \item Texture space is a [0,1] space in which the textures for a 3d object are mapped and stored. Each shell takes up space in texture space.
+        \item There are no absolute sizes in texture space, however it is more challenging to draw, even in higher resolutions, on smaller areas. Additionally, higher resolution textures take up more space on disc and in RAM.
+    \end{itemize}
+    \item What is UV stacking?
+    \begin{itemize}
+        \item Stacking multiple identical UV shells on top of each other to save texture space, so that each individual one does not need to be painted and the same level of detail can be achieved without inflating the size of the texture file.
+    \end{itemize}
+    \item What is a ``Texel"?
+    \item When is it important to have consistent texel sizes for different UV shells on a model and why?
+\end{itemize}
 
 \newpage
 \section{General Mathematics \& Physics}
