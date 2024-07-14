@@ -536,6 +536,20 @@
     \begin{itemize}
         \item The checked keyword ensures that if a variable is overflowing within the code block it encapsulates, an exception will be thrown rather than allowing the overflow.
     \end{itemize}
+    \item What is the difference between implicit and explicit conversion?
+    \begin{itemize}
+        \item Implicit conversion happens when there is a guarantee that there is no data loss between two data types. For example, converting from a short to an int.
+        \item Explicit conversion happens when there is not a guarantee that there is no data loss between two data types, but the conversion is still valid. For example, converting from an int to a byte.
+        \begin{lstlisting}[language=C++]
+            int i = 277;
+            byte b = (byte)i;\end{lstlisting}
+    \end{itemize}
+    \item How do you convert between data types that do not support implicit or explicit conversion?
+    \begin{itemize}
+        \item Use the built-in $Parse()$ and $TryParse()$ functions that are part of each primitive data type
+        \item Additionally, .NET provides a $Convert$ class with functions such as $Convert.ToInt32()$
+        \item Lastly, conversions can be built as members of custom classes, or through the use of extension methods.
+    \end{itemize}
 \end{itemize}
 
 
