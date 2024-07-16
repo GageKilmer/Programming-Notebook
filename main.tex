@@ -629,6 +629,44 @@
         \item The mesh filter component contains the vertex information for a mesh. Swapping this out allows you to change the shape of an object without fully replacing it.
         \item Meanwhile, the mesh renderer component contains information about how the object should be drawn, such as its material.
     \end{itemize}
+    \item What is a shader?
+    \begin{itemize}
+        \item A shader is a script which contains properties that determine how an object is rendered by the render pipeline.
+        \item They are often pipeline specific, and each pipeline comes with a set of default shaders built for it.
+    \end{itemize}
+    \item What are the two main types of shading performed by shaders?
+    \begin{itemize}
+        \item Fragment Shading/Pixel Shading - represents mesh surfaces and generates pixel color on output image
+        \item Vertex Shading - Operates on the vertices of a mesh, typically to make them move. (think moving water)
+        \item Shaders are typically called Fragment Shaders or Vertex Shaders based on what they do, but technically any shader can do both.
+    \end{itemize}
+    \item What is the difference between physically based rendering and non-physically based rendering?
+    \begin{itemize}
+        \item Physically based rendering (PBR) has the qualities of lights and surfaces remain separate, and the renderer determines how light interacts with the scene to create lighting that more accurately matches reality
+        \item Non-physically based rendering typically has the properties of shadows, lighting, and reflections handled manually without a lighting physics engine. This is often used for more stylized graphics such as ``cartoon" games.
+    \end{itemize}
+    \item What is the relationship between materials and shaders?
+    \begin{itemize}
+        \item Shaders determine what an object \textit{can} look like, whereas a material determines what an object \textit{does} look like.
+    \end{itemize}
+    \item What are the two types of light reflection and how do they differ?
+    \begin{itemize}
+        \item Specular Reflections - The direct reflection of the light, which is most visible on shiny objects. Think about the bright spot on an object where light hits it directly.
+        \item Diffuse Reflections - The light that is not absorbed or specular reflected is then diffuse reflected off of the object. Determines the visible color of an object. For example, the brown light that hits my eyes after bouncing off of my desk.
+    \end{itemize}
+    \item What element of a material refers to the diffuse reflection?
+    \begin{itemize}
+        \item While not exactly the same thing, different shaders use the terms \textit{base map}, \textit{albedo}, and \textit{diffuse map.}
+    \end{itemize}
+    \item What is ``albedo?"
+    \begin{itemize}
+        \item Albedo describes the light diffusion of an object, with luminosity being the amount of light that is diffused when using the HSL color space.
+    \end{itemize}
+    \item What is the difference between a map and a texture?
+    \begin{itemize}
+        \item Maps are 2D images which wrap around 3d objects to give them certain visual properties
+        \item Textures are files which contain maps.
+    \end{itemize}
 \end{itemize}
 
 \newpage
@@ -684,5 +722,11 @@
         $\newline (a.y*b.z - a.z*b.y), (a.z*b.x - a.x*b.z), (a.x*b.y - a.y*b.x)$ 
         \item The sign of the resultant vectors components can show whether a clockwise or counterclockwise turn on a given axis will get the first vector to line up with the second. Positive for clockwise, and negative for counterclockwise.
     \end{itemize}
+\end{itemize}
+
+\newpage
+\section{Helpful References}
+\begin{itemize}
+    \item \href{https://docs.unity3d.com/Manual/StandardShaderMaterialCharts.html}{Unity Shader Material Charts}
 \end{itemize}
 \end{document}
