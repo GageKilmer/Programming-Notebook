@@ -559,6 +559,10 @@
         \item Additionally, .NET provides a $Convert$ class with functions such as $Convert.ToInt32()$
         \item Lastly, conversions can be built as members of custom classes, or through the use of extension methods.
     \end{itemize}
+    \item What does the static $string.join()$ do?
+    \begin{itemize}
+        \item It takes two parameters, a ``separator" which is inserted between each element of the second parameter, an array. It returns a string with the combined data.
+    \end{itemize}
 \end{itemize}
 
 
@@ -597,6 +601,35 @@
     \item Profiler.beginSample("name")/Profiler.endSample() - Any code between these two statements shows up in the heirarchy view of the profiler using the name passed into beginSample as a label. 
 \end{itemize}
 \subsection{Review Questions}
+\begin{itemize}
+    \item What is a cookie?
+    \begin{itemize}
+        \item Cookies are masks that are placed on lights to change the shadows the light creates, such as their color or shape.
+    \end{itemize}
+    \item What are the five steps of the asset workflow?
+    \begin{itemize}
+        \item Import - Bring content in from outside sources, such as textures, sounds, 3d models
+        \item Create - use that content to create something within the unity editor
+        \item Build - build your project and any associated asset bundles
+        \item Distribute - Send your project to end users
+        \item Load - load updates at runtime
+    \end{itemize}
+    \item What is a mesh?
+    \begin{itemize}
+        \item A mesh is a 3D wireframe, like a skeleton, that describes the shape of an object.
+        \item Meshes are made up of many 2d polygons bounded by vertices in 3d space.
+    \end{itemize}
+    \item What are normals?
+    \begin{itemize}
+        \item Normals are parts of mesh data that informs the direction that polygons are facing, which help create curved imagery from flat polygons.
+        \item The shader is responsible for drawing the mesh properly given its vertex and normal data.
+    \end{itemize}
+    \item What is the difference between the ``mesh filter" and ``mesh renderer" components?
+    \begin{itemize}
+        \item The mesh filter component contains the vertex information for a mesh. Swapping this out allows you to change the shape of an object without fully replacing it.
+        \item Meanwhile, the mesh renderer component contains information about how the object should be drawn, such as its material.
+    \end{itemize}
+\end{itemize}
 
 \newpage
 \section{Unreal Engine Game Development}
