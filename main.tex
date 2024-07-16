@@ -667,6 +667,53 @@
         \item Maps are 2D images which wrap around 3d objects to give them certain visual properties
         \item Textures are files which contain maps.
     \end{itemize}
+    \item What is the difference between the specular and metallic material workflows?
+    \begin{itemize}
+        \item The metallic workflow has a ``metallic" value which is modified by the ``R" channel of the set map, and the color of specular reflections is determined by the albedo color.
+        \item The specular workflow has a ``specular" field which uses the RGB channels of the given map to expressly state the color that specular lighting should be.
+    \end{itemize}
+    \item Why might only half of an object with the ``Transparent" surface type become see-through?
+    \begin{itemize}
+        \item By default, the renderer only renders the front of an object, but transparent objects need the whole object rendered.
+        \item This can be done by setting the ``Render Face" field in the material to ``both."
+    \end{itemize}
+    \item What is ``Bump Mapping?"
+    \begin{itemize}
+        \item Bump mapping is the process of using textures (i.e. normal maps) to simulate the texture of an object without changing the mesh.
+    \end{itemize}
+    \item Why are normal maps mostly cyan and purple?
+    \begin{itemize}
+        \item The RGB channels of a normal map represent the direction of a pixel relative to the face of the mesh.
+        \item RGB channels map to XYZ axis and the blue channel is the most commonly used for normal map features.
+    \end{itemize}
+    \item How do shaders read heightmaps?
+    \begin{itemize}
+        \item heightmaps are typically grayscale images, but the shader only reads the green channel.
+    \end{itemize}
+    \item What is occlusion?
+    \begin{itemize}
+        \item Occlusion is the blockage of light by an object.
+    \end{itemize}
+    \item How do occlusion maps work?
+    \begin{itemize}
+        \item Sometimes, light doesn't behave in desired ways when creating shadows. Occlusion maps are grayscale images that represent light and darkness across an object.
+    \end{itemize}
+    \item What is the ``Detail Inputs" section of a material used for, and what are it's three main components?
+    \begin{itemize}
+        \item The detail inputs section is used for microsurface mapping, creating small details too fine for your normal maps.
+        \item The normal map component - used for getting minute textural details, such as pores.
+        \item The base map component - used for small colors, such as individual threads in a piece of fabric
+        \item The mask component - Defines which areas are and are not supposed to be affecting by the normal and base maps in this section.
+    \end{itemize}
+    \item What are emissive maps and how do you use them?
+    \begin{itemize}
+        \item Emissive maps determine which parts of an object, if any, give off light.
+        \item Any non-black area of an emissive map gives off it's color as light.
+    \end{itemize}
+    \item What is shader graph?
+    \begin{itemize}
+        \item Shader graph is unity's solution for creating custom shaders.
+    \end{itemize}
 \end{itemize}
 
 \newpage
