@@ -53,9 +53,9 @@
 
 \newpage
 \section{General Programming}
-\subsection{Review Questions}
+\subsection{Object Oriented Programming}
 \begin{itemize}
-    \item What are the four pillars of object oriented programming
+    \item What are the four pillars of object oriented programming?
     \begin{itemize}
         \item Abstraction: Hiding anything that makes it more difficult for the programmer using your code to understand it. Often takes the form of separating your interface from your implementation.
         \item Inheritance: The process of having a base class, and derived classes which inherit certain traits and features from the base/parent class.
@@ -66,25 +66,24 @@
 \subsection{Algorithms}
 \subsubsection{The A* Algorithm}
 \begin{itemize}
-    \item The A* Algorithm is a node-based pathfinding algorithm which uses a cost value based on distance traveled and distance to goal to determine the best path
-    \item The node structure should contain fields for $distanceFromOrigin$, $distanceToEndpoint$, $totalScore$
-    and $parentNode$
+    \item The A* Algorithm is a node-based pathfinding algorithm which uses a cost value based on distance traveled and distance to goal to determine the best path.
+    \item The node structure should contain fields for $distanceFromOrigin$, $distanceToEndpoint$, $totalScore$ and $parentNode$.
     \begin{itemize}
-        \item $distanceFromOrigin$ is cumulative based on the distance from the previous node
-        \item $distanceToEndpoint$ can be any form of distance calculation, like taxicab or direct
-        \item $totalCost$ is the sum of $distanceFromOrigin$ and $distanceToEndpint$
+        \item $distanceFromOrigin$ is cumulative based on the distance from the previous node.
+        \item $distanceToEndpoint$ can be any form of distance calculation, like taxicab or direct.
+        \item $totalCost$ is the sum of $distanceFromOrigin$ and $distanceToEndpint$.
     \end{itemize}
     \item The basic process for the A* algorithm is as follows:
     \begin{itemize}
         \item Create two empty lists of nodes, $nodesToCheck$ and $checkedNodes$.
-        \item Add the starting node to the list of nodes to check
+        \item Add the starting node to the list of nodes to check.
         \item Check to see if any of the neighboring nodes to the current node are valid, and if so, calculate their $totalCost$ add them to the $nodesToCheck$ list.
-        \item Sort the $nodesToCheck$ list by the $totalCost$ of its elements
-        \item Move the current node to $checkedNodes$
+        \item Sort the $nodesToCheck$ list by the $totalCost$ of its elements.
+        \item Move the current node to $checkedNodes$.
         \item Grab the first element of $nodesToCheck$, check if it is the destination, and if not, repeat from step 3.
         \item Once the grabbed node is the destination, work backwards through the parents of each node to get the best path.
     \end{itemize}
-    \item The $totalCost$ field of a node can incorporate additional information to guide the algorithm towards a more ``ideal" path
+    \item The $totalCost$ field of a node can incorporate additional information to guide the algorithm towards a more ``ideal" path.
     \item There may be an additional value added to $totalCost$ for ``lava tiles" that deal damage to the character walking over them.
     \item This, in turn, disincentivizes the path without outright removing it from consideration.
 \end{itemize}
@@ -100,14 +99,14 @@
 \begin{itemize}
     \item The command design pattern is a general term that refers to storing a function call as an object. This object can then be passed as an argument to a function, can be added to a queue or invoked at a specified time, and implement undo/redo functionality.
     \item In C++ this can take the form of function pointers, In C\# this is called a delegate. Other languages use the terms first-order function, callback, or closure, each with their own unique properties.
-    \item There are four key aspects to the Command structure
+    \item There are four key aspects to the Command pattern:
     \begin{itemize}
         \item Command Interface: the abstract base class that acts as a framework for minimum functionality any derived command classes need to implement.
         \item Concrete Command Classes: The derived classes of the command interface, which call actually implemented functions from the receiver. The concrete command classes should contain almost no actual implementations, but must contain fields for any necessary parameters of the callback function they invoke.
         \item Receiver: The device that implements the desired functionality. The receiver class can be an abstract base class allowing for greater extensibility via derived classes if desired.
         \item Invoker/Sender: The invoker is the class that actually calls the $command.execute()$ function from a reference to a command instance, and it has no knowledge of the implementation of the underlying method call, or of the command class it is invoking.
     \end{itemize}
-    \item An object-oriented implementation to decouple input buttons and game functionality could be as such
+    \item An object-oriented implementation to decouple input buttons and game functionality could be as such:
     \begin{itemize}
         \item An abstract base Command class with derived classes that implement the game functions as overrides to an invoke function. 
         \item Each input button then invokes the function pointer within the Command class, such that which derived class instance is tied to which input can be changed, allowing for buttons to be remapped
@@ -128,17 +127,19 @@
     \begin{itemize}
         \item This paradigm has each flyweight (intrinsic) class holding all of the methods relating to the class, with the extrinsic class passing in any necessary information for that method to run.
     \end{itemize}
-    \item Personally I feel that, in languages that support static fields, the best way to implement a flyweight-style separation of intrinsic and extrinsic data is via static fields. \item I think that holding the intrinsic state in static fields and extrinsic state in non-static fields has the best balance of performance and readability. \item It is worth noting that with the static field method, each instance of the extrinsic class must contain a reference to the intrinsic data by nature of how static members work. This is not necessarily true using Nystrom's version.
+    \item Personally I feel that, in languages that support static fields, the best way to implement a flyweight-style separation of intrinsic and extrinsic data is via static fields. 
+    \item I think that holding the intrinsic state in static fields and extrinsic state in non-static fields has the best balance of performance and readability.
+    \item It is worth noting that with the static field method, each instance of the extrinsic class \textbf{must} contain a reference to the intrinsic data by nature of how static members work. This is not necessarily true using Nystrom's version.
 \end{itemize}
 
 \newpage
 \section{C\# Programming}
 
-\subsection{Review Questions}
+\subsection{Features of the C\# Language}
 \begin{itemize}
     \item What is .NET?
     \begin{itemize}
-        \item .NET is a framework for building windows applications, which supports multiple languages such as C\# and F\#
+        \item .NET is a framework for building windows applications, which supports multiple languages such as C\# and F\#.
         \item There are two components to .NET, the Common Language Runtime (CLR) and a class library.
     \end{itemize}
     \item What is the .NET SDK?
@@ -171,6 +172,9 @@
     \begin{itemize}
         \item Starting with C\#9, simple applications can be written that do not require explicit definitions of a namespace, a main function, or even a class.
     \end{itemize}
+\end{itemize}
+\subsection{Working with Variables and Data}
+\begin{itemize}
     \item What is the \textit{var} keyword and how is it used?
     \begin{itemize}
         \item The var keyword is used to declare a variable using type inference, in essence the compiler interprets the data type that is being stored and treats the variable as such. 
@@ -184,13 +188,13 @@
     \end{itemize}
     \item What are ``nullable value types?"
     \begin{itemize}
-        \item Nullable value types were introduced in C\#2, and by using the ? operator, it allows you to set value type variables to null
+        \item Nullable value types were introduced in C\#2, and by using the ? operator, it allows you to set value type variables to null.
         \item Behind the scenes
         \begin{lstlisting}[language=C++]
             int? myInt; \end{lstlisting} is interpreted by the compiler as
             \begin{lstlisting}[language=C++]
             Nullable<int> myInt; \end{lstlisting}
-        \item Nullable types have a property called \textit{hasValue} which returns true if it is not null, and false if it is 
+        \item Nullable types have a property called \textit{hasValue} which returns true if it is not null, and false if it is null.
     \end{itemize}
     \item What are ``nullable reference types?"
     \begin{itemize}
@@ -223,14 +227,14 @@
     \end{itemize}
     \item What are the different value and reference types?
     \begin{itemize}
-        \item Reference types: Class, String, Dynamic, Object, Interface, Record, Delegate
-        \item Value types: Anything else, notably including structs
+        \item Reference types: Class, String, Dynamic, Object, Interface, Record, Delegate.
+        \item Value types: Anything else, notably including structs.
     \end{itemize}
     \item What are the different integer types in C\#?
     \begin{itemize}
-        \item The byte and sbyte types have 8 bits, and can represent [0,255] and [-128,127] respectively
-        \item The short and ushort types have 16 bits, and can represent [-32768, 32767] and [0, 65535] respectively
-        \item The int type is a signed 32-bit integer, and uint is an unsigned 32-bit integer
+        \item The byte and sbyte types have 8 bits, and can represent [0,255] and [-128,127] respectively.
+        \item The short and ushort types have 16 bits, and can represent [-32768, 32767] and [0, 65535] respectively.
+        \item The int type is a signed 32-bit integer, and uint is an unsigned 32-bit integer.
         \item Likewise, long and ulong are 64-bit integers.
         \item Lastly, there is the BigInteger data type, which has no upper and lower bounds, but will dynamically resize itself as long as there is enough memory to do so.
     \end{itemize}
@@ -250,6 +254,97 @@
     \begin{itemize}
         \item You cannot convert between integers and booleans in C\#.
     \end{itemize}
+    \item What are the differences between Casting, Converting, and Parsing data?
+    \begin{itemize}
+        \item Casting tells the compiler that one piece of data should be interpreted as a different data type. No data is changed, but data can be lost when casting from a higher precision type to a lower precision type. For example, a float to an int.
+        \item Conversion is typically an actual software function call which takes in one data type and returns another. Data may be changed during this call.
+        \item Parsing is a special subset of conversion where a string is converted to a different data type if it can properly be represented as such.
+    \end{itemize}
+    \item What are the different access modifiers in C\#?
+    \begin{itemize}
+        \item Public: Accessible from anywhere in the code.
+        \item Private: Accessible only from the containing class.
+        \item Protected: Accessible from the containing class and any derived classes.
+        \item Internal: Accessible from the containing class and anywhere in the same assembly.
+        \item Protected Internal: Accessible from the containing class, anywhere in the same assembly, and derived classes anywhere.
+        \item Private Protected: Accessible only from the containing class and derived classes \textbf{in the same assembly}.
+    \end{itemize}
+    \item What are the differences between the \textit{const} and \textit{readonly} keywords?
+    \begin{itemize}
+        \item Const fields are known at compile-time, and they cannot be changed at all once set. They must be initialized to a value when declared, and are always intrinsically static.
+        \item Readonly fields are able to be set at runtime, and they can be changed without limitation within the constructor of the containing object. They can be static or instance variables.
+    \end{itemize}
+    \item What are the differences between the equivalence semantics for value and reference types?
+    \begin{itemize}
+        \item When checking if two value types are equal, the default behaviour is to return true if every data member of the $a$ and $b$ are equal.
+        \item When checking if two reference types are equal, the default behaviour is to return true only if both $a$ and $b$ point to the same location in memory.
+        \item These behaviours can be changed by overriding the Equals and GetHashCode functionality.
+    \end{itemize}
+    \item What are ``Properties" in C\#?
+    \begin{itemize}
+        \item Properties are private fields made accessible through getter and setter accessor functions.
+        \item Accessor functions can be auto-implemented, and may also allow for default values to be set.
+        \begin{lstlisting}[language=C++]
+                public int MyInt {get; set;} = 112; \end{lstlisting} 
+        \item Auto-implemented accessors can have their accessibility explicitly set.
+        \begin{lstlisting}[language=C++]
+                public int MyInt {public get; private set;} = 112; \end{lstlisting}
+        \item Properties can be made readonly by simply not implementing a set accessor.
+        \begin{lstlisting}[language=C++]
+                public int MyInt {get; } = 112; \end{lstlisting}
+        \item Properties can be accessed as if they were public fields without breaking encapsulation.
+    \end{itemize}
+    \item What are ``expression-bodied properties"?
+    \begin{itemize}
+        \item Expression-bodied properties are read-only properties implemented with the $=>$ syntax.
+        \item The compiler automatically generates a public get accessor for the property.
+         \begin{lstlisting}[language=C++]
+                private readonly string ReturnThisValue;
+                public string CallThisAccessor => ReturnThisValue;\end{lstlisting}
+    \end{itemize}
+    \item What are ``init-only set accessors"?
+    \begin{itemize}
+        \item Init-only set accesssors are used to create set accessors which can only be used from a constructor or an object initializer.
+        \begin{lstlisting}[language=C++]
+                public class MyClass
+                {
+                    public string initOnly {get; init;} = "Default";
+                }
+                //Valid
+                myClass = new MyClass(){initOnly = "New Value";}
+
+                //Not valid
+                myClass = new MyClass();
+                myClass.initOnly = "New Value";
+                \end{lstlisting}
+    \end{itemize}\item What is ``boxing" and when does it occur?
+    \begin{itemize}
+        \item Boxing is the process of turning a value type variable into a reference type variable.
+        \item It occurs when value types are used as the right-hand side of a set operator and the left-hand side is a reference type variable.
+    \end{itemize}
+    \item What is the \textit{checked} keyword?
+    \begin{itemize}
+        \item The checked keyword ensures that if a variable is overflowing within the code block it encapsulates, an exception will be thrown rather than allowing the overflow.
+    \end{itemize}
+    \item What is the difference between implicit and explicit conversion?
+    \begin{itemize}
+        \item Implicit conversion happens when there is a guarantee that there is no data loss between two data types. For example, converting from a short to an int.
+        \item Explicit conversion happens when there is not a guarantee that there is no data loss between two data types, but the conversion is still valid. For example, converting from an int to a byte.
+        \begin{lstlisting}[language=C++]
+            int i = 277;
+            byte b = (byte)i;\end{lstlisting}
+    \end{itemize}
+    \item How do you convert between data types that do not support implicit or explicit conversion?
+    \begin{itemize}
+        \item Use the built-in $Parse()$ and $TryParse()$ functions that are part of each primitive data type.
+        \item Additionally, .NET provides a $Convert$ class with functions such as $Convert.ToInt32()$.
+        \item Lastly, conversions can be built as members of custom classes, or through the use of extension methods.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{Pattern Matching}
+\begin{itemize}
     \item What is ``pattern matching?"
     \begin{itemize}
         \item Pattern matching allows simpler syntax to check whether data matches some given pattern. There are many types of pattern matching that each have different uses. They are most commonly used with conditional statements, switch statements, and switch expressions.
@@ -285,20 +380,18 @@
     \item What are Pattern Combinators/Logical Patterns?
     \begin{itemize}
         \item The three pattern combinators are \textit{not, and,} and \textit{or}.
-        \item They act as ways to combine multiple patterns together for more complex checking
+        \item They act as ways to combine multiple patterns together for more complex checking.
         \begin{lstlisting}[language=C++]
                 if(myValue is < 0 or >100 and not 32) \end{lstlisting} 
     \end{itemize}
-    \item What are the differences between Casting, Converting, and Parsing data?
-    \begin{itemize}
-        \item Casting tells the compiler that one piece of data should be interpreted as a different data type. No data is changed, but data can be lost when casting from a higher precision type to a lower precision type. For example, a float to an int.
-        \item Conversion is typically an actual software function call which takes in one data type and returns another. Data may be changed during this call.
-        \item Parsing is a special subset of conversion where a string is converted to a different data type if it can properly be represented as such.
-    \end{itemize}
+\end{itemize}
+
+\subsection{Working with Strings}
+\begin{itemize}
     \item What is the difference between the String class and the StringBuilder class?
     \begin{itemize}
-        \item Technically strings are an immutable type in C\#, they cannot be modified. If you do someString += "a", you are actually creating an entirely new string object which is inefficient
-        \item StringBuilders are a mutable type that allow you to modify strings without creating new objects
+        \item Technically strings are an immutable type in C\#, they cannot be modified. If you do someString += "a", you are actually creating an entirely new string object which is inefficient.
+        \item StringBuilders are a mutable type that allow you to modify strings without creating new objects.
     \end{itemize}
     \item What is String Interpolation?
     \begin{itemize}
@@ -317,64 +410,15 @@
         \begin{lstlisting}[language=C++]
                 Console.Writeln(@"C:\Users\User"); \end{lstlisting} 
     \end{itemize}
-    \item What are the different access modifiers in C\#?
+    \item What does the static method $string.join()$ do?
     \begin{itemize}
-        \item Public: Accessible from anywhere in the code.
-        \item Private: Accessible only from the containing class.
-        \item Protected: Accessible from the containing class and any derived classes.
-        \item Internal: Accessible from the containing class and anywhere in the same assembly 
-        \item Protected Internal: Accessible from the containing class, anywhere in the same assembly, and derived classes anywhere.
-        \item Private Protected: Accessible only from the containing class and derived classes \textbf{in the same assembly}.
+        \item It takes two parameters, a ``separator" which is inserted between each element of the second parameter, an array. It returns a string with the combined data.
     \end{itemize}
-    \item What are the differences between the \textit{const} and \textit{readonly} keywords?
-    \begin{itemize}
-        \item Const fields are known at compile-time, and they cannot be changed at all once set. They must be initialized to a value when declared, and are always intrinsically static.
-        \item Readonly fields are able to be set at runtime, and they can be changed without limitation within the constructor of the containing object. They can be static or instance variables.
-    \end{itemize}
-    \item What are the differences between the equivalence semantics for value and reference types?
-    \begin{itemize}
-        \item When checking if two value types are equal, the default behaviour is to return true if every data member of the $a$ and $b$ are equal.
-        \item When checking if two reference types are equal, the default behaviour is to return true only if both $a$ and $b$ point to the same location in memory.
-        \item These behaviours can be changed by overriding the Equals and GetHashCode functionality.
-    \end{itemize}
-    \item What are ``Properties" in C\#?
-    \begin{itemize}
-        \item Properties are private fields made accessible through getter and setter accessor functions.
-        \item Accessor functions can be auto-implemented, and may also allow for default values to be set.
-        \begin{lstlisting}[language=C++]
-                public int MyInt {get; set;} = 112; \end{lstlisting} 
-        \item Auto-implemented accessors can have their accessibility explicitly set.
-        \begin{lstlisting}[language=C++]
-                public int MyInt {public get; private set;} = 112; \end{lstlisting}
-        \item Properties can be made readonly by simply not implementing a set accessor.
-        \begin{lstlisting}[language=C++]
-                public int MyInt {get; } = 112; \end{lstlisting}
-        \item Properties can be accessed as if they were public fields without breaking encapsulation.
-    \end{itemize}
-    \item What are ``expression-bodied properties"?
-    \begin{itemize}
-        \item Expression-bodied properties are read-only properties implemented with the $=>$ syntax.
-        \item The compiler automatically generates a public get accessor for the property
-         \begin{lstlisting}[language=C++]
-                private readonly string ReturnThisValue;
-                public string CallThisAccessor => ReturnThisValue;\end{lstlisting}
-    \end{itemize}
-    \item What are ``init-only set accessors"?
-    \begin{itemize}
-        \item Init-only set accesssors are used to create set accessors which can only be used from a constructor or an object initializer.
-        \begin{lstlisting}[language=C++]
-                public class MyClass
-                {
-                    public string initOnly {get; init;} = "Default";
-                }
-                //Valid
-                myClass = new MyClass(){initOnly = "New Value";}
+\end{itemize}
 
-                //Not valid
-                myClass = new MyClass();
-                myClass.initOnly = "New Value";
-                \end{lstlisting}
-    \end{itemize}
+
+\subsection{Methods, Parameters, \& Arguments}
+\begin{itemize}
     \item What is the difference between a function and a method in C\# nomenclature?
     \begin{itemize}
         \item Methods specifically refer to callable code chunks which may accept parameters and may return values.
@@ -394,10 +438,10 @@
     \item What are named arguments and how/why are they implemented?
     \begin{itemize}
         \item Named arguments allow you to specify the name of the parameter that an argument correlates to.
-        \item They are implemented by prefacing an argument with the name of the parameter, followed by a colon
+        \item They are implemented by prefacing an argument with the name of the parameter, followed by a colon.
                 \begin{lstlisting}[language=C++]
                 myFunction(x: x_value, y: y_value);\end{lstlisting}
-        \item They generally improve code readability without adding any overhead as the compiler rearranges the arguments automatically, and they are especially powerful used in conjunction with optional parameters
+        \item They generally improve code readability without adding any overhead as the compiler rearranges the arguments automatically, and they are especially powerful used in conjunction with optional parameters.
     \end{itemize}
     \item What is the different between an argument and a parameter?
     \begin{itemize}
@@ -432,6 +476,27 @@
                 myFunc(otherParam: 1, 1,2,...,x)
                 \end{lstlisting}
     \end{itemize}
+     \item What are ``local functions?"
+    \begin{itemize}
+        \item Local functions are functions declared inside of a method, where the method is the scope, and as such they can only be called from within that method.
+        \item If a local function is declared static, it cannot use any variables from the containing method or any instance variables of the containing class, but the compiler is able to perform additional optimizations.
+        \item If a local function is not static, it \textbf{must} be defined after any method-local variables it intends to use.
+    \end{itemize}
+    \item What are ``Generic Methods" and how are they used?
+    \begin{itemize}
+        \item Generic methods are methods which allow multiple types of variables to be passed in.
+        \item Each ``wildcard type" must be included in triangle brackets after the method name but before the parameter list.
+        \begin{lstlisting}[language=C++]
+            //T1 and T2 represent the two generic types 
+            private bool AreTypesSame<T1, T2>(T1 object1, T2, object2)
+            {
+                return typeOf(T1) == typeOf(T2);
+            }\end{lstlisting}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Basics of Classes, Structs, and Records}
+\begin{itemize}
     \item What are the differences between object initializers and constructors?
     \begin{itemize}
         \item Constructors and object initializers are both used to instantiate objects, however object initializers were introduced prior to optional parameters, and exist as a method to reduce the number of constructor overloads.
@@ -470,7 +535,7 @@
                 MyDerivedObject(int a) : base(a, 0){}
                 \end{lstlisting}
         \item For the most part, optional parameters are a safer alternative to constructor chaining. However constructor chaining exposes more information through reflection than optional parameters.
-        \item Constructor chaining can also be used in conjunction with optional constructor parameters to call a base constructor with non-default values
+        \item Constructor chaining can also be used in conjunction with optional constructor parameters to call a base constructor with non-default values.
         \begin{lstlisting}[language=C++]
                 //The constructor for MyBaseObject takes one or two argument and defaults the                second optional argument to 0
                 MyBaseObject(int param1, string classID = "Base Class") {doSomething;}
@@ -483,33 +548,17 @@
     \end{itemize}
     \item What are static constructors and when should they be used?
     \begin{itemize}
-        \item Static constructors are class constructors which are always called at most one time (never if the class is never used)
+        \item Static constructors are class constructors which are always called at most one time (never if the class is never used).
         \item They are automatically called by the CLR and cannot be manually called.
         \item Static constructors are typically called immediately before the first call to the class, but .NET does not guarantee when they are called and so it should not be relied upon.
         \item The use-case is rather niche, but in the circumstance that you need read-only static fields whose values are not known at compile time, such as reading data from a configuration file, static constructors are a good solution.
         \item Static constructors do have a slight performance impact over simply setting the value at declaration if the value is known at compile-time.
     \end{itemize}
-    \item What are ``local functions?"
-    \begin{itemize}
-        \item Local functions are functions declared inside of a method, where the method is the scope, and as such they can only be called from within that method.
-        \item If a local function is declared static, it cannot use any variables from the containing method or any instance variables of the containing class, but the compiler is able to perform additional optimizations
-        \item If a local function is not static, it \textbf{must} be defined after any method-local variables it intends to use.
-    \end{itemize}
-    \item What are ``Generic Methods" and how are they used?
-    \begin{itemize}
-        \item Generic methods are methods which allow multiple types of variables to be passed in.
-        \item Each ``wildcard type" must be included in triangle brackets after the method name but before the parameter list.
-        \begin{lstlisting}[language=C++]
-            //T1 and T2 represent the two generic types 
-            private bool AreTypesSame<T1, T2>(T1 object1, T2, object2)
-            {
-                return typeOf(T1) == typeOf(T2);
-            }\end{lstlisting}
-    \end{itemize}
+   
     \item What are extension methods?
     \begin{itemize}
         \item Extension methods are methods added to a class which the defining code does not have direct access to.
-        \item Extension methods \textbf{must} be static and within a static class, however they are called like instance methods
+        \item Extension methods \textbf{must} be static and within a static class, however they are called like instance methods.
         \item They are implemented by using the $this$ keyword before the first parameter, of the type being extended.
         \begin{lstlisting}[language=C++]
             //The first parameter marks this function as an extension method, and does NOT               require an argument to be used in the method call
@@ -525,7 +574,7 @@
     \begin{itemize}
         \item Anonymous types are types which do not have identifiers associated with them, and they are mostly used in LINQ queries where paring down the amount of data being returned by a query is desired.
         \item They are declared using the $new$ keyword, and they cannot be passed into functions, used as return types, or used to explicitly set field types.
-        \item They are mutable without destruction through the use of the $with$ keyword
+        \item They are mutable without destruction through the use of the $with$ keyword.
         \begin{lstlisting}[language=C++]
             var apple = new {name = "Apple", cost = 1.25};
             var saleApple = apple with {cost=0.79}; \end{lstlisting}
@@ -536,39 +585,13 @@
         \item Records are reference types that use value equivalence semantics, making them ideal for data-centric classes. They are immutable by default but can be made mutable, and cannot contain any non-data members. 
         \item Structs are value types that use value equivalence semantics. Because they are value types, they are stored on the stack by default. Structs always have a default constructor, even if a non-default constructor is defined, and they do \textbf{NOT} support inheritance.
     \end{itemize}
-    \item What is ``boxing" and when does it occur?
-    \begin{itemize}
-        \item Boxing is the process of turning a value type variable into a reference type variable.
-        \item It occurs when value types are used as the right-hand side of a set operator and the left-hand side is a reference type variable.
-    \end{itemize}
-    \item What is the \textit{checked} keyword?
-    \begin{itemize}
-        \item The checked keyword ensures that if a variable is overflowing within the code block it encapsulates, an exception will be thrown rather than allowing the overflow.
-    \end{itemize}
-    \item What is the difference between implicit and explicit conversion?
-    \begin{itemize}
-        \item Implicit conversion happens when there is a guarantee that there is no data loss between two data types. For example, converting from a short to an int.
-        \item Explicit conversion happens when there is not a guarantee that there is no data loss between two data types, but the conversion is still valid. For example, converting from an int to a byte.
-        \begin{lstlisting}[language=C++]
-            int i = 277;
-            byte b = (byte)i;\end{lstlisting}
-    \end{itemize}
-    \item How do you convert between data types that do not support implicit or explicit conversion?
-    \begin{itemize}
-        \item Use the built-in $Parse()$ and $TryParse()$ functions that are part of each primitive data type
-        \item Additionally, .NET provides a $Convert$ class with functions such as $Convert.ToInt32()$
-        \item Lastly, conversions can be built as members of custom classes, or through the use of extension methods.
-    \end{itemize}
-    \item What does the static $string.join()$ do?
-    \begin{itemize}
-        \item It takes two parameters, a ``separator" which is inserted between each element of the second parameter, an array. It returns a string with the combined data.
-    \end{itemize}
+    
+    
 \end{itemize}
 
 
 \newpage
 \section{C++ Programming}
-\subsection{Review Questions}
 
 \newpage
 \section{Unity Game Development}
@@ -600,19 +623,16 @@
                 transform.rotation = Quaternion.Slerp(startingRot, endingRot, ratio); \end{lstlisting}
     \item Profiler.beginSample("name")/Profiler.endSample() - Any code between these two statements shows up in the heirarchy view of the profiler using the name passed into beginSample as a label. 
 \end{itemize}
-\subsection{Review Questions}
+
+\subsection{Basics of 3D Assets \& Rendering}
 \begin{itemize}
-    \item What is a cookie?
-    \begin{itemize}
-        \item Cookies are masks that are placed on lights to change the shadows the light creates, such as their color or shape.
-    \end{itemize}
     \item What are the five steps of the asset workflow?
     \begin{itemize}
-        \item Import - Bring content in from outside sources, such as textures, sounds, 3d models
-        \item Create - use that content to create something within the unity editor
-        \item Build - build your project and any associated asset bundles
-        \item Distribute - Send your project to end users
-        \item Load - load updates at runtime
+        \item Import - Bring content in from outside sources, such as textures, sounds, 3d models.
+        \item Create - use that content to create something within the unity editor.
+        \item Build - build your project and any associated asset bundles.
+        \item Distribute - Send your project to end users.
+        \item Load - load updates at runtime.
     \end{itemize}
     \item What is a mesh?
     \begin{itemize}
@@ -629,6 +649,18 @@
         \item The mesh filter component contains the vertex information for a mesh. Swapping this out allows you to change the shape of an object without fully replacing it.
         \item Meanwhile, the mesh renderer component contains information about how the object should be drawn, such as its material.
     \end{itemize}
+    \item What is the difference between physically based rendering and non-physically based rendering?
+    \begin{itemize}
+        \item Physically based rendering (PBR) has the qualities of lights and surfaces remain separate, and the renderer determines how light interacts with the scene to create lighting that more accurately matches reality.
+        \item Non-physically based rendering typically has the properties of shadows, lighting, and reflections handled manually without a lighting physics engine. This is often used for more stylized graphics such as ``cartoon" games.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{Materials \& Shaders}
+\begin{itemize}
+    
+    
     \item What is a shader?
     \begin{itemize}
         \item A shader is a script which contains properties that determine how an object is rendered by the render pipeline.
@@ -636,15 +668,11 @@
     \end{itemize}
     \item What are the two main types of shading performed by shaders?
     \begin{itemize}
-        \item Fragment Shading/Pixel Shading - represents mesh surfaces and generates pixel color on output image
-        \item Vertex Shading - Operates on the vertices of a mesh, typically to make them move. (think moving water)
+        \item Fragment Shading/Pixel Shading - represents mesh surfaces and generates pixel color on output image.
+        \item Vertex Shading - Operates on the vertices of a mesh, typically to make them move. (think moving water).
         \item Shaders are typically called Fragment Shaders or Vertex Shaders based on what they do, but technically any shader can do both.
     \end{itemize}
-    \item What is the difference between physically based rendering and non-physically based rendering?
-    \begin{itemize}
-        \item Physically based rendering (PBR) has the qualities of lights and surfaces remain separate, and the renderer determines how light interacts with the scene to create lighting that more accurately matches reality
-        \item Non-physically based rendering typically has the properties of shadows, lighting, and reflections handled manually without a lighting physics engine. This is often used for more stylized graphics such as ``cartoon" games.
-    \end{itemize}
+    
     \item What is the relationship between materials and shaders?
     \begin{itemize}
         \item Shaders determine what an object \textit{can} look like, whereas a material determines what an object \textit{does} look like.
@@ -664,7 +692,7 @@
     \end{itemize}
     \item What is the difference between a map and a texture?
     \begin{itemize}
-        \item Maps are 2D images which wrap around 3d objects to give them certain visual properties
+        \item Maps are 2D images which wrap around 3d objects to give them certain visual properties.
         \item Textures are files which contain maps.
     \end{itemize}
     \item What is the difference between the specular and metallic material workflows?
@@ -679,7 +707,7 @@
     \end{itemize}
     \item What is ``Bump Mapping?"
     \begin{itemize}
-        \item Bump mapping is the process of using textures (i.e. normal maps) to simulate the texture of an object without changing the mesh.
+        \item Bump mapping is the process of using textures (i.e. normal maps and height maps) to simulate the texture of an object without changing the mesh.
     \end{itemize}
     \item Why are normal maps mostly cyan and purple?
     \begin{itemize}
@@ -702,7 +730,7 @@
     \begin{itemize}
         \item The detail inputs section is used for microsurface mapping, creating small details too fine for your normal maps.
         \item The normal map component - used for getting minute textural details, such as pores.
-        \item The base map component - used for small colors, such as individual threads in a piece of fabric
+        \item The base map component - used for small colors, such as individual threads in a piece of fabric.
         \item The mask component - Defines which areas are and are not supposed to be affecting by the normal and base maps in this section.
     \end{itemize}
     \item What are emissive maps and how do you use them?
@@ -714,9 +742,17 @@
     \begin{itemize}
         \item Shader graph is unity's solution for creating custom shaders.
     \end{itemize}
+\end{itemize}
+
+\subsection{Lighting}
+\begin{itemize}
+    \item What is a cookie?
+    \begin{itemize}
+        \item Cookies are masks that are placed on lights to change the shadows the light creates, such as their color or shape.
+    \end{itemize}
     \item What is the difference between direct and indirect lighting?
     \begin{itemize}
-        \item Direct Lighting - Hits a surface, reflects off of it once, and then hits a sensor
+        \item Direct Lighting - Hits a surface, reflects off of it once, and then hits a sensor.
         \item Indirect Lighting - Hits multiple via reflection before hitting a sensor.
     \end{itemize}
     \item What is global illumination?
@@ -725,18 +761,18 @@
     \end{itemize}
     \item What are the two global illumination systems in unity?
     \begin{itemize}
-        \item Baked Global Illumination System 
-        \item Realtime Illumination System
+        \item Baked Global Illumination System.
+        \item Realtime Illumination System.
     \end{itemize}
     \item What are the three parts of the baked global illumination system in unity?
     \begin{itemize}
-        \item Lightmapping via the progressive lightmapper
-        \item Light probes
-        \item Reflection Probes
+        \item Lightmapping via the progressive lightmapper.
+        \item Light probes.
+        \item Reflection Probes.
     \end{itemize}
     \item What are the two parts of the realtime illumination system in unity?
     \begin{itemize}
-        \item Lightmapping via the deprecated ``Enlighten lightmapper"
+        \item Lightmapping via the deprecated ``Enlighten lightmapper."
         \item Light probes.
     \end{itemize}
     \item What is lightmapping?
@@ -749,7 +785,7 @@
     \end{itemize}
     \item What are reflection probes?
     \begin{itemize}
-        \item A unity tool which allows for better reflections
+        \item A unity tool which allows for better reflections.
     \end{itemize}
     \item What is the difference between baked and realtime lighting?
     \begin{itemize}
@@ -760,8 +796,8 @@
     \item What are some of the different types of lighting?
     \begin{itemize}
         \item Ambient Lighting - Does not come from a source, a baseline level of light. Also called ``diffuse environmental light" in unity.
-        \item Natural Lighting - Usually the sun or moon
-        \item Motivated Lighting - Light from a specific source that exists in the scene
+        \item Natural Lighting - Usually the sun or moon.
+        \item Motivated Lighting - Light from a specific source that exists in the scene.
         \item Key Lighting - Light that doesn't come from an identifiable source but highlights something in the scene.
     \end{itemize}
     \item What is a skybox?
@@ -770,14 +806,13 @@
     \end{itemize}
     \item What are the two types of skyboxes?
     \begin{itemize}
-        \item Textured - The appearance is determined by a texture element on the skybox
+        \item Textured - The appearance is determined by a texture element on the skybox.
         \item Procedural - The appearance is generated by the shader based on some predefined constraints.
     \end{itemize}
 \end{itemize}
 
 \newpage
 \section{Unreal Engine Game Development}
-\subsection{Review Questions}
 
 \newpage
 \section{General Game Development}
@@ -785,7 +820,9 @@
 \begin{itemize}
     \item What is the difference between a normal map, heightmap, bump map?
     \begin{itemize}
-        \item They are all the same thing, which describe 
+        \item Both normal maps and height maps are types of bump maps.
+        \item Normal maps change how lighting affects materials at different spots to give the illusion of depth.
+        \item Height maps (also called parallax mapping or parallax occlusion mapping) shift the \textit{visible} areas of a texture to allow it to occlude things around it without requiring a more complex mesh.
     \end{itemize}
     \item What are UVs?
     \begin{itemize}
@@ -793,7 +830,7 @@
     \end{itemize}
     \item What is a UV Shell?
     \begin{itemize}
-        \item A section of the UVs that is cut off from the rest of the UV's, so that it can be stretched and resized without affecting other parts of the model?
+        \item A section of the UVs that is cut off from the rest of the UV's, so that it can be stretched and resized without affecting other parts of the model.
     \end{itemize}
     \item What is texture space?
     \begin{itemize}
@@ -819,8 +856,8 @@
     \end{itemize}
     \item What are the two parts of a Blazor component?
     \begin{itemize}
-        \item HTML template - determines how the UI looks
-        \item C\# methods - define the functionality
+        \item HTML template - determines how the UI looks.
+        \item C\# methods - define the functionality.
     \end{itemize}
 \end{itemize}
 
@@ -830,18 +867,18 @@
 \begin{itemize}
     \item What is a Dot Product?
     \begin{itemize}
-        \item The dot product is the sum of the multiplication of two vectors by their components
-        \item To get the dot product of vectors a and b we use the formula $a.x*b.x + a.y*b.y$
+        \item The dot product is the sum of the multiplication of two vectors by their components.
+        \item To get the dot product of vectors a and b we use the formula: $a.x*b.x + a.y*b.y$
         \item A right angle has a dot product of $0$, acute angles have positive dot products, and obtuse angles have negative dot products.
-        \item This can be used to identify the relative positioning of an object in space
-        \item Additionally the angle $\theta$ can be calculated via the formula $\theta = cos^{-1}(\frac{a \cdot b}{||a||*||b||})$ 
+        \item This can be used to identify the relative positioning of an object in space.
+        \item Additionally the angle $\theta$ can be calculated via the formula: $\theta = cos^{-1}(\frac{a \cdot b}{||a||*||b||})$
         \item Normalized vectors return $1$ if they face the same direction and $-1$ if they face opposite directions.
     \end{itemize}
     \item What is a Cross Product?
     \begin{itemize}
         \item Cross product returns a vector which is orthogonal to both of its input vectors.
         \item The cross product of vectors $a$ and $b$ can be calculated by the formula:
-        $\newline (a.y*b.z - a.z*b.y), (a.z*b.x - a.x*b.z), (a.x*b.y - a.y*b.x)$ 
+        $\newline (a.y*b.z - a.z*b.y), (a.z*b.x - a.x*b.z), (a.x*b.y - a.y*b.x)$
         \item The sign of the resultant vectors components can show whether a clockwise or counterclockwise turn on a given axis will get the first vector to line up with the second. Positive for clockwise, and negative for counterclockwise.
     \end{itemize}
 \end{itemize}
