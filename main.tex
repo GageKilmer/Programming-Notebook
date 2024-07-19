@@ -634,12 +634,12 @@
         \item Distribute - Send your project to end users.
         \item Load - load updates at runtime.
     \end{itemize}
-    \item What is a mesh?
+    \item What is a mesh? (General)
     \begin{itemize}
         \item A mesh is a 3D wireframe, like a skeleton, that describes the shape of an object.
         \item Meshes are made up of many 2d polygons bounded by vertices in 3d space.
     \end{itemize}
-    \item What are normals?
+    \item What are normals? (General)
     \begin{itemize}
         \item Normals are parts of mesh data that informs the direction that polygons are facing, which help create curved imagery from flat polygons.
         \item The shader is responsible for drawing the mesh properly given its vertex and normal data.
@@ -649,7 +649,7 @@
         \item The mesh filter component contains the vertex information for a mesh. Swapping this out allows you to change the shape of an object without fully replacing it.
         \item Meanwhile, the mesh renderer component contains information about how the object should be drawn, such as its material.
     \end{itemize}
-    \item What is the difference between physically based rendering and non-physically based rendering?
+    \item What is the difference between physically based rendering and non-physically based rendering? (General)
     \begin{itemize}
         \item Physically based rendering (PBR) has the qualities of lights and surfaces remain separate, and the renderer determines how light interacts with the scene to create lighting that more accurately matches reality.
         \item Non-physically based rendering typically has the properties of shadows, lighting, and reflections handled manually without a lighting physics engine. This is often used for more stylized graphics such as ``cartoon" games.
@@ -659,14 +659,12 @@
 
 \subsection{Materials \& Shaders}
 \begin{itemize}
-    
-    
-    \item What is a shader?
+    \item What is a shader? (general)
     \begin{itemize}
         \item A shader is a script which contains properties that determine how an object is rendered by the render pipeline.
         \item They are often pipeline specific, and each pipeline comes with a set of default shaders built for it.
     \end{itemize}
-    \item What are the two main types of shading performed by shaders?
+    \item What are the two main types of shading performed by shaders? (General)
     \begin{itemize}
         \item Fragment Shading/Pixel Shading - represents mesh surfaces and generates pixel color on output image.
         \item Vertex Shading - Operates on the vertices of a mesh, typically to make them move. (think moving water).
@@ -677,7 +675,7 @@
     \begin{itemize}
         \item Shaders determine what an object \textit{can} look like, whereas a material determines what an object \textit{does} look like.
     \end{itemize}
-    \item What are the two types of light reflection and how do they differ?
+    \item What are the two types of light reflection and how do they differ? (General)
     \begin{itemize}
         \item Specular Reflections - The direct reflection of the light, which is most visible on shiny objects. Think about the bright spot on an object where light hits it directly.
         \item Diffuse Reflections - The light that is not absorbed or specular reflected is then diffuse reflected off of the object. Determines the visible color of an object. For example, the brown light that hits my eyes after bouncing off of my desk.
@@ -690,7 +688,7 @@
     \begin{itemize}
         \item Albedo describes the light diffusion of an object, with luminosity being the amount of light that is diffused when using the HSL color space.
     \end{itemize}
-    \item What is the difference between a map and a texture?
+    \item What is the difference between a map and a texture? (General)
     \begin{itemize}
         \item Maps are 2D images which wrap around 3d objects to give them certain visual properties.
         \item Textures are files which contain maps.
@@ -705,11 +703,11 @@
         \item By default, the renderer only renders the front of an object, but transparent objects need the whole object rendered.
         \item This can be done by setting the ``Render Face" field in the material to ``both."
     \end{itemize}
-    \item What is ``Bump Mapping?"
+    \item What is ``Bump Mapping?" (General)
     \begin{itemize}
         \item Bump mapping is the process of using textures (i.e. normal maps and height maps) to simulate the texture of an object without changing the mesh.
     \end{itemize}
-    \item Why are normal maps mostly cyan and purple?
+    \item Why are normal maps mostly cyan and purple? (General)
     \begin{itemize}
         \item The RGB channels of a normal map represent the direction of a pixel relative to the face of the mesh.
         \item RGB channels map to XYZ axis and the blue channel is the most commonly used for normal map features.
@@ -718,11 +716,11 @@
     \begin{itemize}
         \item heightmaps are typically grayscale images, but the shader only reads the green channel.
     \end{itemize}
-    \item What is occlusion?
+    \item What is occlusion? (General)
     \begin{itemize}
         \item Occlusion is the blockage of light by an object.
     \end{itemize}
-    \item How do occlusion maps work?
+    \item How do occlusion maps work? (General)
     \begin{itemize}
         \item Sometimes, light doesn't behave in desired ways when creating shadows. Occlusion maps are grayscale images that represent light and darkness across an object.
     \end{itemize}
@@ -733,7 +731,7 @@
         \item The base map component - used for small colors, such as individual threads in a piece of fabric.
         \item The mask component - Defines which areas are and are not supposed to be affecting by the normal and base maps in this section.
     \end{itemize}
-    \item What are emissive maps and how do you use them?
+    \item What are emissive maps and how do you use them? (General)
     \begin{itemize}
         \item Emissive maps determine which parts of an object, if any, give off light.
         \item Any non-black area of an emissive map gives off it's color as light.
@@ -750,12 +748,12 @@
     \begin{itemize}
         \item Cookies are masks that are placed on lights to change the shadows the light creates, such as their color or shape.
     \end{itemize}
-    \item What is the difference between direct and indirect lighting?
+    \item What is the difference between direct and indirect lighting? (General)
     \begin{itemize}
         \item Direct Lighting - Hits a surface, reflects off of it once, and then hits a sensor.
-        \item Indirect Lighting - Hits multiple via reflection before hitting a sensor.
+        \item Indirect Lighting - Hits multiple surfaces via reflection before hitting a sensor.
     \end{itemize}
-    \item What is global illumination?
+    \item What is global illumination? (General)
     \begin{itemize}
         \item Global illumination is a system which simulates both direct and indirect lighting.
     \end{itemize}
@@ -775,11 +773,11 @@
         \item Lightmapping via the deprecated ``Enlighten lightmapper."
         \item Light probes.
     \end{itemize}
-    \item What is lightmapping?
+    \item What is lightmapping? (General)
     \begin{itemize}
-        \item lightmapping is the technique of pre-calcuating the brightness of surfaces and storing them in a ``lightmap" texture.
+        \item Lightmapping is the technique of pre-calcuating the brightness of surfaces and storing them in a ``lightmap" texture.
     \end{itemize}
-    \item What are light probes?
+    \item What are light probes? 
     \begin{itemize}
         \item Light probes give information about light in the empty areas of a scene.
     \end{itemize}
@@ -787,24 +785,24 @@
     \begin{itemize}
         \item A unity tool which allows for better reflections.
     \end{itemize}
-    \item What is the difference between baked and realtime lighting?
+    \item What is the difference between baked and realtime lighting? (General)
     \begin{itemize}
         \item Baked lighting is calculated before runtime, and as such is much more efficient to render at the cost of being less responsive to moving objects within a scene.
         \item Realtime lighting is calculated during runtime, making it computationally expensive in complex scenes, but is extremely responsive to changes in the scene.
         \item It's worth noting that realtime and baked lighting are not mutually exclusive and often work best in tandem.
     \end{itemize}
-    \item What are some of the different types of lighting?
+    \item What are some of the different types of lighting? (General)
     \begin{itemize}
         \item Ambient Lighting - Does not come from a source, a baseline level of light. Also called ``diffuse environmental light" in unity.
         \item Natural Lighting - Usually the sun or moon.
         \item Motivated Lighting - Light from a specific source that exists in the scene.
         \item Key Lighting - Light that doesn't come from an identifiable source but highlights something in the scene.
     \end{itemize}
-    \item What is a skybox?
+    \item What is a skybox? (General)
     \begin{itemize}
         \item A skybox is effectively a giant cube around a scene which is textured on the inside to provide a background.
     \end{itemize}
-    \item What are the two types of skyboxes?
+    \item What are the two types of skyboxes? (General)
     \begin{itemize}
         \item Textured - The appearance is determined by a texture element on the skybox.
         \item Procedural - The appearance is generated by the shader based on some predefined constraints.
@@ -831,6 +829,53 @@
         \item Ambient lighting does not come from a source traditionally, but it does have a source component in unity, typically the skybox.
         \item It is a baseline light that affects everything in your scene.
         \item It only affects objects that are marked \textit{static}, as it \textbf{must} be precalculated.
+    \end{itemize}
+    \item What is a shadow map?
+    \begin{itemize}
+        \item Shadow maps are texture maps which contain the shadows for an entire scene. 
+        \item They are updated based on the realtime lighting in the scene and the shadow map is sampled and drawn over a flattened image of the scene 
+    \end{itemize}
+    \item What are ``Shadow Cascades?"
+    \begin{itemize}
+        \item Shadow cascades are a technique used to overcome an issue called \textit{perspective aliasing}, which causes shadows to appear pixelated
+        \item This can also be fixed by using soft shadows or increasing the resolution of the shadow map, but these are more computationally expensive.
+    \end{itemize}
+    \item What is ``Shadow Acne?"
+    \begin{itemize}
+        \item Shadow acne is a bug where pixels that should be lit appear as if they were in shadow.
+        \item It can be fixed by tweaking the \textit{Depth Bias} and \textit{Normal Bias} settings.
+    \end{itemize}
+    \item What is a light probe group and how does it work?
+    \begin{itemize}
+        \item Light probes measure the light between them and any other light probes in the group
+        \item The nearest light probe is used to estimate static light sources on dynamic objects
+        \item Light probe groups take up 3d space and are thus called 3D Volumes.
+    \end{itemize}
+    \item What extra steps need to take place when using window-like materials with baked lighting?
+    \begin{itemize}
+        \item The shadows on the window object must be turned off prior to baking and turned back on afterwards.
+    \end{itemize}
+    \item What are some ways to make a scene (especially an interior scene) brighter?
+    \begin{itemize}
+        \item You can increase the number of bounces in the lighting menu (Though going above 4 has diminishing returns on brightness and increases baking times)
+        \item You can increase the indirect intensity in the lighting menu
+        \item You can add more lights
+        \item You can increase the ambient lighting of the scene
+    \end{itemize}
+    \item What are light leaks?
+    \begin{itemize}
+        \item Light leaks are when light appears around an object that it shouldn't, from lighting passing between walls/doors/etc
+    \end{itemize}
+    \item How do you deal with light leaks?
+    \begin{itemize}
+        \item Adjust the normal, depth, and near plane settings under bias.
+        \item The bias setting can be found in the \textit{Shadows} section of the URP asset, or in a specific light if the bias there is set to custom. Changes to the URP asset are project wide, changes to a specific light only affect that light.
+    \end{itemize}
+    \item Why might a model have distorted patterning on it, and how can it be fixed?
+    \begin{itemize}
+        \item One possibility is that its light UVs are improperly set up.
+        \item This can be identified by going to the draw settings and looking at the baked lightmap. 
+        \item If this is the problem, either have the lighting artist fix it, or go to the model in the inspector, and check \textit{generate lightmap UVs} and hit apply.
     \end{itemize}
 \end{itemize}
 
