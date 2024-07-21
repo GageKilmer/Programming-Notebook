@@ -634,65 +634,27 @@
         \item Distribute - Send your project to end users.
         \item Load - load updates at runtime.
     \end{itemize}
-    \item What is a mesh? (General)
-    \begin{itemize}
-        \item A mesh is a 3D wireframe, like a skeleton, that describes the shape of an object.
-        \item Meshes are made up of many 2d polygons bounded by vertices in 3d space.
-    \end{itemize}
-    \item What are normals? (General)
-    \begin{itemize}
-        \item Normals are parts of mesh data that informs the direction that polygons are facing, which help create curved imagery from flat polygons.
-        \item The shader is responsible for drawing the mesh properly given its vertex and normal data.
-    \end{itemize}
     \item What is the difference between the ``mesh filter" and ``mesh renderer" components?
     \begin{itemize}
         \item The mesh filter component contains the vertex information for a mesh. Swapping this out allows you to change the shape of an object without fully replacing it.
         \item Meanwhile, the mesh renderer component contains information about how the object should be drawn, such as its material.
-    \end{itemize}
-    \item What is the difference between physically based rendering and non-physically based rendering? (General)
-    \begin{itemize}
-        \item Physically based rendering (PBR) has the qualities of lights and surfaces remain separate, and the renderer determines how light interacts with the scene to create lighting that more accurately matches reality.
-        \item Non-physically based rendering typically has the properties of shadows, lighting, and reflections handled manually without a lighting physics engine. This is often used for more stylized graphics such as ``cartoon" games.
     \end{itemize}
 \end{itemize}
 
 
 \subsection{Materials \& Shaders}
 \begin{itemize}
-    \item What is a shader? (general)
-    \begin{itemize}
-        \item A shader is a script which contains properties that determine how an object is rendered by the render pipeline.
-        \item They are often pipeline specific, and each pipeline comes with a set of default shaders built for it.
-    \end{itemize}
-    \item What are the two main types of shading performed by shaders? (General)
-    \begin{itemize}
-        \item Fragment Shading/Pixel Shading - represents mesh surfaces and generates pixel color on output image.
-        \item Vertex Shading - Operates on the vertices of a mesh, typically to make them move. (think moving water).
-        \item Shaders are typically called Fragment Shaders or Vertex Shaders based on what they do, but technically any shader can do both.
-    \end{itemize}
-    
+   
     \item What is the relationship between materials and shaders?
     \begin{itemize}
         \item Shaders determine what an object \textit{can} look like, whereas a material determines what an object \textit{does} look like.
     \end{itemize}
-    \item What are the two types of light reflection and how do they differ? (General)
-    \begin{itemize}
-        \item Specular Reflections - The direct reflection of the light, which is most visible on shiny objects. Think about the bright spot on an object where light hits it directly.
-        \item Diffuse Reflections - The light that is not absorbed or specular reflected is then diffuse reflected off of the object. Determines the visible color of an object. For example, the brown light that hits my eyes after bouncing off of my desk.
-    \end{itemize}
+    
     \item What element of a material refers to the diffuse reflection?
     \begin{itemize}
         \item While not exactly the same thing, different shaders use the terms \textit{base map}, \textit{albedo}, and \textit{diffuse map.}
     \end{itemize}
-    \item What is ``albedo?"
-    \begin{itemize}
-        \item Albedo describes the light diffusion of an object, with luminosity being the amount of light that is diffused when using the HSL color space.
-    \end{itemize}
-    \item What is the difference between a map and a texture? (General)
-    \begin{itemize}
-        \item Maps are 2D images which wrap around 3d objects to give them certain visual properties.
-        \item Textures are files which contain maps.
-    \end{itemize}
+    
     \item What is the difference between the specular and metallic material workflows?
     \begin{itemize}
         \item The metallic workflow has a ``metallic" value which is modified by the ``R" channel of the set map, and the color of specular reflections is determined by the albedo color.
@@ -703,26 +665,9 @@
         \item By default, the renderer only renders the front of an object, but transparent objects need the whole object rendered.
         \item This can be done by setting the ``Render Face" field in the material to ``both."
     \end{itemize}
-    \item What is ``Bump Mapping?" (General)
-    \begin{itemize}
-        \item Bump mapping is the process of using textures (i.e. normal maps and height maps) to simulate the texture of an object without changing the mesh.
-    \end{itemize}
-    \item Why are normal maps mostly cyan and purple? (General)
-    \begin{itemize}
-        \item The RGB channels of a normal map represent the direction of a pixel relative to the face of the mesh.
-        \item RGB channels map to XYZ axis and the blue channel is the most commonly used for normal map features.
-    \end{itemize}
     \item How do shaders read heightmaps?
     \begin{itemize}
         \item heightmaps are typically grayscale images, but the shader only reads the green channel.
-    \end{itemize}
-    \item What is occlusion? (General)
-    \begin{itemize}
-        \item Occlusion is the blockage of light by an object.
-    \end{itemize}
-    \item How do occlusion maps work? (General)
-    \begin{itemize}
-        \item Sometimes, light doesn't behave in desired ways when creating shadows. Occlusion maps are grayscale images that represent light and darkness across an object.
     \end{itemize}
     \item What is the ``Detail Inputs" section of a material used for, and what are it's three main components?
     \begin{itemize}
@@ -730,11 +675,6 @@
         \item The normal map component - used for getting minute textural details, such as pores.
         \item The base map component - used for small colors, such as individual threads in a piece of fabric.
         \item The mask component - Defines which areas are and are not supposed to be affecting by the normal and base maps in this section.
-    \end{itemize}
-    \item What are emissive maps and how do you use them? (General)
-    \begin{itemize}
-        \item Emissive maps determine which parts of an object, if any, give off light.
-        \item Any non-black area of an emissive map gives off it's color as light.
     \end{itemize}
     \item What is shader graph?
     \begin{itemize}
@@ -747,15 +687,6 @@
     \item What is a cookie?
     \begin{itemize}
         \item Cookies are masks that are placed on lights to change the shadows the light creates, such as their color or shape.
-    \end{itemize}
-    \item What is the difference between direct and indirect lighting? (General)
-    \begin{itemize}
-        \item Direct Lighting - Hits a surface, reflects off of it once, and then hits a sensor.
-        \item Indirect Lighting - Hits multiple surfaces via reflection before hitting a sensor.
-    \end{itemize}
-    \item What is global illumination? (General)
-    \begin{itemize}
-        \item Global illumination is a system which simulates both direct and indirect lighting.
     \end{itemize}
     \item What are the two global illumination systems in unity?
     \begin{itemize}
@@ -773,10 +704,7 @@
         \item Lightmapping via the deprecated ``Enlighten lightmapper."
         \item Light probes.
     \end{itemize}
-    \item What is lightmapping? (General)
-    \begin{itemize}
-        \item Lightmapping is the technique of pre-calcuating the brightness of surfaces and storing them in a ``lightmap" texture.
-    \end{itemize}
+   
     \item What are light probes? 
     \begin{itemize}
         \item Light probes give information about light in the empty areas of a scene.
@@ -785,28 +713,7 @@
     \begin{itemize}
         \item A unity tool which allows for better reflections.
     \end{itemize}
-    \item What is the difference between baked and realtime lighting? (General)
-    \begin{itemize}
-        \item Baked lighting is calculated before runtime, and as such is much more efficient to render at the cost of being less responsive to moving objects within a scene.
-        \item Realtime lighting is calculated during runtime, making it computationally expensive in complex scenes, but is extremely responsive to changes in the scene.
-        \item It's worth noting that realtime and baked lighting are not mutually exclusive and often work best in tandem.
-    \end{itemize}
-    \item What are some of the different types of lighting? (General)
-    \begin{itemize}
-        \item Ambient Lighting - Does not come from a source, a baseline level of light. Also called ``diffuse environmental light" in unity.
-        \item Natural Lighting - Usually the sun or moon.
-        \item Motivated Lighting - Light from a specific source that exists in the scene.
-        \item Key Lighting - Light that doesn't come from an identifiable source but highlights something in the scene.
-    \end{itemize}
-    \item What is a skybox? (General)
-    \begin{itemize}
-        \item A skybox is effectively a giant cube around a scene which is textured on the inside to provide a background.
-    \end{itemize}
-    \item What are the two types of skyboxes? (General)
-    \begin{itemize}
-        \item Textured - The appearance is determined by a texture element on the skybox.
-        \item Procedural - The appearance is generated by the shader based on some predefined constraints.
-    \end{itemize}
+   
     \item What are the four types of light sources in unity?
     \begin{itemize}
         \item Point Lights - Send out light from a set point in all directions equally. Good for things like lightbulbs and lamps.
@@ -886,6 +793,16 @@
 \section{General Game Development}
 \subsection{3D Modeling}
 \begin{itemize}
+    \item What is a mesh? (General)
+    \begin{itemize}
+        \item A mesh is a 3D wireframe, like a skeleton, that describes the shape of an object.
+        \item Meshes are made up of many 2d polygons bounded by vertices in 3d space.
+    \end{itemize}
+    \item What are normals? (General)
+    \begin{itemize}
+        \item Normals are parts of mesh data that informs the direction that polygons are facing, which help create curved imagery from flat polygons.
+        \item The shader is responsible for drawing the mesh properly given its vertex and normal data.
+    \end{itemize}
     \item What is the difference between a normal map, heightmap, bump map?
     \begin{itemize}
         \item Both normal maps and height maps are types of bump maps.
@@ -911,7 +828,97 @@
     \end{itemize}
     \item What is a ``Texel"?
     \item When is it important to have consistent texel sizes for different UV shells on a model and why?
+    \item What is the difference between physically based rendering and non-physically based rendering? (General)
+    \begin{itemize}
+        \item Physically based rendering (PBR) has the qualities of lights and surfaces remain separate, and the renderer determines how light interacts with the scene to create lighting that more accurately matches reality.
+        \item Non-physically based rendering typically has the properties of shadows, lighting, and reflections handled manually without a lighting physics engine. This is often used for more stylized graphics such as ``cartoon" games.
+    \end{itemize}
+     \item What is a shader? (general)
+    \begin{itemize}
+        \item A shader is a script which contains properties that determine how an object is rendered by the render pipeline.
+        \item They are often pipeline specific, and each pipeline comes with a set of default shaders built for it.
+    \end{itemize}
+    \item What are the two main types of shading performed by shaders? (General)
+    \begin{itemize}
+        \item Fragment Shading/Pixel Shading - represents mesh surfaces and generates pixel color on output image.
+        \item Vertex Shading - Operates on the vertices of a mesh, typically to make them move. (think moving water).
+        \item Shaders are typically called Fragment Shaders or Vertex Shaders based on what they do, but technically any shader can do both.
+    \end{itemize}
+    \item What are the two types of light reflection and how do they differ? (General)
+    \begin{itemize}
+        \item Specular Reflections - The direct reflection of the light, which is most visible on shiny objects. Think about the bright spot on an object where light hits it directly.
+        \item Diffuse Reflections - The light that is not absorbed or specular reflected is then diffuse reflected off of the object. Determines the visible color of an object. For example, the brown light that hits my eyes after bouncing off of my desk.
+    \end{itemize}
+    \item What is ``albedo?"
+    \begin{itemize}
+        \item Albedo describes the light diffusion of an object, with luminosity being the amount of light that is diffused when using the HSL color space.
+    \end{itemize}
+    \item What is the difference between a map and a texture? (General)
+    \begin{itemize}
+        \item Maps are 2D images which wrap around 3d objects to give them certain visual properties.
+        \item Textures are files which contain maps.
+    \end{itemize}
+    \item What is ``Bump Mapping?" (General)
+    \begin{itemize}
+        \item Bump mapping is the process of using textures (i.e. normal maps and height maps) to simulate the texture of an object without changing the mesh.
+    \end{itemize}
+    \item Why are normal maps mostly cyan and purple? (General)
+    \begin{itemize}
+        \item The RGB channels of a normal map represent the direction of a pixel relative to the face of the mesh.
+        \item RGB channels map to XYZ axis and the blue channel is the most commonly used for normal map features.
+    \end{itemize}
+     \item What is occlusion? (General)
+    \begin{itemize}
+        \item Occlusion is the blockage of light by an object.
+    \end{itemize}
+    \item How do occlusion maps work? (General)
+    \begin{itemize}
+        \item Sometimes, light doesn't behave in desired ways when creating shadows. Occlusion maps are grayscale images that represent light and darkness across an object.
+    \end{itemize}
+     \item What are emissive maps and how do you use them? (General)
+    \begin{itemize}
+        \item Emissive maps determine which parts of an object, if any, give off light.
+        \item Any non-black area of an emissive map gives off it's color as light.
+    \end{itemize}
+    \item What is the difference between direct and indirect lighting? (General)
+    \begin{itemize}
+        \item Direct Lighting - Hits a surface, reflects off of it once, and then hits a sensor.
+        \item Indirect Lighting - Hits multiple surfaces via reflection before hitting a sensor.
+    \end{itemize}
+    \item What is global illumination? (General)
+    \begin{itemize}
+        \item Global illumination is a system which simulates both direct and indirect lighting.
+    \end{itemize}
+     \item What is lightmapping? (General)
+    \begin{itemize}
+        \item Lightmapping is the technique of pre-calcuating the brightness of surfaces and storing them in a ``lightmap" texture.
+    \end{itemize}
+     \item What is the difference between baked and realtime lighting? (General)
+    \begin{itemize}
+        \item Baked lighting is calculated before runtime, and as such is much more efficient to render at the cost of being less responsive to moving objects within a scene.
+        \item Realtime lighting is calculated during runtime, making it computationally expensive in complex scenes, but is extremely responsive to changes in the scene.
+        \item It's worth noting that realtime and baked lighting are not mutually exclusive and often work best in tandem.
+    \end{itemize}
+    \item What are some of the different types of lighting? (General)
+    \begin{itemize}
+        \item Ambient Lighting - Does not come from a source, a baseline level of light. Also called ``diffuse environmental light" in unity.
+        \item Natural Lighting - Usually the sun or moon.
+        \item Motivated Lighting - Light from a specific source that exists in the scene.
+        \item Key Lighting - Light that doesn't come from an identifiable source but highlights something in the scene.
+    \end{itemize}
+    \item What is a skybox? (General)
+    \begin{itemize}
+        \item A skybox is effectively a giant cube around a scene which is textured on the inside to provide a background.
+    \end{itemize}
+    \item What are the two types of skyboxes? (General)
+    \begin{itemize}
+        \item Textured - The appearance is determined by a texture element on the skybox.
+        \item Procedural - The appearance is generated by the shader based on some predefined constraints.
+    \end{itemize}
 \end{itemize}
+
+
+
 
 \newpage
 \section{Web Design}
