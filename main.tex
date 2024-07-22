@@ -837,6 +837,66 @@
     \end{itemize}
 \end{itemize}
 
+\subsection{Audio}
+\begin{itemize}
+    \item What are the two main components of the audio system in unity?
+    \begin{itemize}
+        \item Audio Sources
+        \item Audio Listeners
+    \end{itemize}
+    \item What does the ``Spread" field within an audio source affect?
+    \begin{itemize}
+        \item The spread field changes how much audio shifts between ears based on position.
+        \item 0 means that the speaker is completely dependent on direction, and 180 means that the speaker is not affected by direction.
+    \end{itemize}
+    \item What is ``audio rolloff" and how do the different types of rolloff work?
+    \begin{itemize}
+        \item Audio rolloff is the function by which audio volume drops off over distance.
+        \item Logarithmic rolloff is accurate to how sounds drop off over distance in real life, however in smaller scenes where audio sources aren't given much space to cover, it can allow you to hear the source beyond it's set boundary
+        \item Linear rolloff uses a linear function to calculate audio volume. While it is less realistic than logarithmic rolloff, it avoids the same issues that arise in small areas that logarithmic suffers from.
+        \item Custom rolloff uses a curve that is defined by the developer to attenuate the sound.
+    \end{itemize}
+    \item What is ``attenuation?"
+    \begin{itemize}
+        \item Attenuation is the sound's rate of decay.
+    \end{itemize}
+    \item How can an echo effect within a cave be implemented?
+    \begin{itemize}
+        \item By using the \textit{Audio Reverb Zone} component.
+    \end{itemize}
+    \item How does the ``Priority" field within an audio source work?
+    \begin{itemize}
+        \item The priority field determines what precedence an audio source should take relative to other active audio sources.
+        \item By default all audio sources have a priority of 128, and lower priority means greater precedence.
+    \end{itemize}
+    \item What is the ``audio mixer" window?
+    \begin{itemize}
+        \item The audio mixer window allows you to group several sound effects together to be modified as a group.
+    \end{itemize}
+    \item How can captions for sound effects be added to a game in unity?
+    \begin{itemize}
+        \item Unity has the \textit{Closed Caption Database} object which allows you to tie specific audio effects to captions.
+    \end{itemize}
+\end{itemize}
+
+\subsection{User Interface}
+\begin{itemize}
+    \item what are the three systems for developing user interfaces in unity?
+    \begin{itemize}
+        \item UGUI - Unity GUI, the most common and most basic system for creating user-facing UI elements.
+        \item IMGUI - Immediate Mode GUI, code-based and typically used for creating debug menus and options.
+        \item UI Toolkit - The newest system, meant to implement the functionality of both UGUI and IMGUI. Still in development, but mostly complete.
+    \end{itemize}
+    \item How can new fonts be added to Unity?
+    \begin{itemize}
+        \item Getting a .tiff or other font file and then importing it via unity's font asset generator.
+    \end{itemize}
+    \item What is ``9-slicing?"
+    \begin{itemize}
+        \item UI sprites can be split into a 3x3 grid to help define how they should scale given different resolutions, to prevent stretching and squishing.
+    \end{itemize}
+\end{itemize}
+
 \newpage
 \section{Unreal Engine Game Development}
 
@@ -1013,5 +1073,9 @@
 \section{Helpful References}
 \begin{itemize}
     \item \href{https://docs.unity3d.com/Manual/StandardShaderMaterialCharts.html}{Unity Shader Material Charts}
+    \item
+    \href{https://gameaccessibilityguidelines.com/full-list/}{Game Accessibility Guidelines}
+    \item
+    \href{https://80.lv/articles/10-golden-rules-on-subtitles-for-games/}{10 Golden Rules for Subtitles in Games}
 \end{itemize}
 \end{document}
