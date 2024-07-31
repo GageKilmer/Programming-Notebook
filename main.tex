@@ -595,7 +595,7 @@
 
 \newpage
 \section{Unity Game Development}
-\subsection{Useful Functions to Remember}
+\subsection{Useful Things to Remember}
 \begin{itemize}
     \item Transform.LookAt - Sets the forward vector of the calling transform to be facing towards the target transform
     \begin{lstlisting}[language=C++]
@@ -621,7 +621,18 @@
     \item Quaternion.Slerp - Spherical Linear Interpolation between two quaternions, $startingRot$ and $endingRot$, based on a ratio between $[0,1]$, usually denoted by time.
     \begin{lstlisting}[language=C++]
                 transform.rotation = Quaternion.Slerp(startingRot, endingRot, ratio); \end{lstlisting}
-    \item Profiler.beginSample("name")/Profiler.endSample() - Any code between these two statements shows up in the heirarchy view of the profiler using the name passed into beginSample as a label. 
+    \item Profiler.beginSample("name")/Profiler.endSample() - Any code between these two statements shows up in the heirarchy view of the profiler using the name passed into beginSample as a label.
+    \item transform.Find(string name) - Finds a game object of the given name from within the children
+    \item Material Property Block - Allows you to change the properties of a single objects material without changing it for all objects using that material.
+    \begin{lstlisting}[language=C++]
+    matBlock = new MaterialPropertyBlock();
+    matBlock.SetTexture("_Material_Base", tex_base);
+    GetComponent<MeshRenderer>().SetPropertyBlock(matBlock);\end{lstlisting}
+    \item Input.getAxis(``AxisName") - returns the value of an axis normalized between [-1, 1].
+    \begin{itemize}
+        \item Mouse input is \textbf{not} normalized between [-1,1] and is instead the distance moved between frames
+        \item If your mouse doesn't seem to be reading properly for calculating directions, check that your frame rate is low enough that values are always being picked up.
+    \end{itemize}
 \end{itemize}
 
 \subsection{Basics of 3D Assets \& Rendering}
