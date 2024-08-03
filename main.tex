@@ -132,6 +132,16 @@
     \item It is worth noting that with the static field method, each instance of the extrinsic class \textbf{must} contain a reference to the intrinsic data by nature of how static members work. This is not necessarily true using Nystrom's version.
 \end{itemize}
 
+\subsubsection{Observer}
+\begin{itemize}
+    \item The observer pattern is one of the most widely used patterns, even being built directly into C\# via the events feature.
+    \item While not necessarily true in common parlance, one distinction between \textit{obervers} and \textit{events} is that observers watch the thing that did something interesting, evvent systems watch an object (i.e. an event instance) that represents something interesting happening 
+    \item The primary part of the Observer pattern is an observer class, which is an abstract base class that has a virtual \textit{onNotify} function.
+    \item Often the \textit{onNotify} function takes the event that triggered it and a reference to the entity that is sending the notification
+    \item Then, the subject class contains a list of \textit{Observers}, or a list of objects which should be notified when the subject sends a notification
+    \item 
+\end{itemize}
+
 \newpage
 \section{C\# Programming}
 
