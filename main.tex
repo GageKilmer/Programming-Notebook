@@ -139,7 +139,7 @@
     \item The primary part of the Observer pattern is an observer class, which is an abstract base class that has a virtual \textit{onNotify} function.
     \item Often the \textit{onNotify} function takes the event that triggered it and a reference to the entity that is sending the notification
     \item Then, the subject class contains a list of \textit{Observers}, or a list of objects which should be notified when the subject sends a notification
-    \item 
+    \item With \textit{Linked Observers}, an observer can have a reference to the next observer in the list for a given subject, which allows you to send the notifications by simply walking the list rather than iterating through it in the subject.
 \end{itemize}
 
 \newpage
